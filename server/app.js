@@ -25,7 +25,7 @@ app
   .use(bodyparser())
   .use(json())
   .use(logger())
-  .use(require('koa-static')(  path.resolve( './static/output')  ))
+  .use(require('koa-static')(  path.resolve( './static/dist')  ))
 
   .use(views(path.join(__dirname, '/views'), {
     options: {settings: {views: path.join(__dirname, 'views')}},
