@@ -7,7 +7,8 @@ class Home extends Component{
     render(){
         return(
             <div>
-                我是首页
+                 后来的我们到最后是s 
+                 <h1>ss</h1>
             </div>
         )
     }

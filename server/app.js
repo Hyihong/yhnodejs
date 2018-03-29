@@ -11,8 +11,10 @@ const path = require('path')
 const config = require('../config/serverConfig.js')
 const router = require('./routes') ;
 
-const port = process.env.PORT || config.port
+const middleware = require('koa-webpack');
+const { compilerInstance } = require('./compiler');
 
+const port = process.env.PORT || config.port
 
 //创建应用
 const app = new Koa()
@@ -20,21 +22,36 @@ const app = new Koa()
 //错误捕获
 onerror(app)
 
-//中间件
+
+//base middleware
 app
   .use(bodyparser())
   .use(json())
   .use(logger())
-  .use(require('koa-static')(  path.resolve( './static/dist')  ))
-
   .use(views(path.join(__dirname, '/views'), {
     options: {settings: {views: path.join(__dirname, 'views')}},
     map: {'njk': 'nunjucks'},
     extension: 'njk'
   }))
 
+//product
+if(false){
+app
+  .use(require('koa-static')(  path.resolve( __dirname,'../static/dist')  ))
   .use(router.routes())
   .use(router.allowedMethods())
+}
+
+//development
+if(true){
+    app
+      .use(router.routes())
+      .use(router.allowedMethods())
+      .use(middleware({
+          compiler:compilerInstance,
+        })
+      );
+}
 
 
 app.on('error', function(err, ctx) {

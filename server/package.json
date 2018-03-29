@@ -20,7 +20,15 @@
     "nunjucks": "~3.0.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-eslint": "7.1.1",
-    "eslint": "3.18.0"
+    "babel-loader": "^7.1.4",
+    "css-loader": "^0.28.11",
+    "eslint": "3.18.0",
+    "koa-webpack": "^3.0.2",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.3.0"
   }
 }
