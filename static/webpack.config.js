@@ -16,8 +16,14 @@ const config = {
             use: 'babel-loader' 
           },
           { 
+            test: /\.css$/, 
+            use: [
+                {  loader: "style-loader" },
+                {  loader: "css-loader"   },
+            ]
+          },
+          { 
             test: /\.less$/, 
-            //exclude: /node_modules/,
             use: [
                 {  loader: "style-loader" },
                 {  loader: "css-loader"   },
@@ -26,7 +32,25 @@ const config = {
                     options: { javascriptEnabled: true } 
                 }
             ]
-          },
+          },{
+            test: /\.(png|jpe?g|gif|bmp)$/,
+            use: [
+                {
+                  loader: 'url-loader',
+                  options: {
+                    limit: 2048
+                  }
+                }
+            ]
+          },{
+            exclude: [/\.html$/,/\.(js|jsx)$/,/\.css$/,/\.json$/,/\.bmp$/,/\.gif$/,/\.jpe?g$/,/\.png$/,/\.less$/],
+            use: [
+                {
+                  loader: 'url-loader',
+                }
+            ]
+          }
+          
         ]
       }
 };

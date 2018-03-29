@@ -13,7 +13,7 @@ router.get('/home', async (ctx, next) => {
   ctx.state = {
     title: data.runoob_author
   }
-  await ctx.render('index', { title:ctx.state})
+  await ctx.render('index')
 })
 
 
