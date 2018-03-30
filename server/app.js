@@ -3,6 +3,7 @@ const views = require('koa-views')
 const convert = require('koa-convert')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
+const cors = require('koa2-cors');
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const debug = require('debug')('koa2:server')
@@ -25,6 +26,7 @@ onerror(app)
 
 //base middleware
 app
+  .use(cors())
   .use(bodyparser())
   .use(json())
   .use(logger())
@@ -33,6 +35,7 @@ app
     map: {'njk': 'nunjucks'},
     extension: 'njk'
   }))
+  
 
 //product
 if(false){

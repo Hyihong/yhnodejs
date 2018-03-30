@@ -1,7 +1,9 @@
 import React,{Component} from 'react' 
-import {  Row,Col } from 'antd' 
+import {  Row,Col,Calendar  } from 'antd' 
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+
 import './style/home.less'
-import tile_1 from "../assets/images/tile_1.jpg"
 import tile_2 from "../assets/images/tile_2.jpg"
 import tile_3 from "../assets/images/tile_3.jpg"
 import tile_4 from "../assets/images/tile_4.jpg"
@@ -17,7 +19,11 @@ class Home extends Component{
         super(props);
     }
     componentDidMount(){
-        
+        console.log(  )
+    }
+    //设置日历浮层容器
+    setCalendarContainer =(trigger)=>{
+        return document.getElementById("calendarContainer")
     }
     render(){
         return(
@@ -48,21 +54,45 @@ class Home extends Component{
                                  <Row style={{marginBottom:"15px"}}>
                                         <h3>图集</h3>
                                         <h2 className="yh-line"></h2>
-                                        <div>
-                                            <img src={tile_atlas} alt="diary"/>
+                                        <div >
+                                            <img src={tile_atlas} alt="atlas"/>
+                                            
                                         </div>
                                  </Row>
                                  <Row gutter={8}>
                                      <Col span={12}>
-                                        <div>
-                                            <img src={tile_1} alt="diary"/>
-                                        </div></Col>
+                                        <div className="yh-tiles-data">
+                                             {/* <h3> { moment().format('MMMM YYYY') } </h3>
+                                             <Calendar fullscreen={false} style={{ width: "100%",height:"100%",borderRadius: 4 }}
+                                                       onSelect={ function(moment){ console.log(moment) } }
+                                                       onPanelChange = { (value,mode)=>{ }}
+                                            ></Calendar >     */}
+                                        </div>
+                                    </Col>
                                      <Col span={12}>
-                                         <Row className="yh-little-tiles">
-                                             <Col span={12}>1</Col>
-                                             <Col span={12}>2</Col>
-                                             <Col span={12}>3</Col>
-                                             <Col span={12}>4</Col>
+                                         <Row gutter={8} className="yh-little-tiles" >
+                                             <Col span={24} style={{marginBottom:"15px"}}>
+                                                  <div className="yh-base-info">
+                                                         <div><i className="fa fa-map-marker"></i>：XIAMEN</div>
+                                                         
+                                                         <div>2018.3.6 晴 </div>
+                                                  </div>
+                                             </Col>
+                                             <Col span={12}>
+                                                    <a href="https://github.com/Hyihong" target="_blank">
+                                                        <div className="yh-more-about-me yh-github">
+                                                            <i className="fa fa-github fa-3x"></i>
+                                                        </div>
+                                                    </a>
+                                             </Col>
+                                             <Col span={12}>
+                                                   <a href="https://weibo.com/" target="_blank">
+                                                        <div className="yh-more-about-me yh-weibo" >
+                                                            <i className="fa fa-weibo fa-3x"></i>
+                                                        </div>
+                                                    </a>
+                                             </Col>
+                                             {/* https://www.sojson.com/open/api/weather/json.shtml?city=北京 */}
                                          </Row>
                                      </Col>
                                  </Row>
