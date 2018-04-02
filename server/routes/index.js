@@ -26,4 +26,18 @@ router.get('/welcome', async function (ctx, next) {
       await ctx.render('welcome', {title: ctx.state} );
 })
 
+router.get("/test",async function(ctx,next){
+     console.log("收到test请求")
+})
+
+router.post("/login",async function(ctx,next){
+       ctx.state = {
+           username: ctx.request.body.username,
+           password: ctx.request.body.password
+       };
+
+       ctx.body = 'Hello World!';
+      
+})
+
 module.exports = router ;
