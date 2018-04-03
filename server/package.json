@@ -18,7 +18,8 @@
     "koa-views": "^6.0.2",
     "koa2-cors": "^2.0.5",
     "mysql": "^2.15.0",
-    "nunjucks": "~3.0.0"
+    "nunjucks": "~3.0.0",
+    "react-dom": "^16.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

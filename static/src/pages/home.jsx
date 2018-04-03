@@ -1,8 +1,13 @@
 import React,{Component} from 'react' 
-import {  Row,Col,Calendar  } from 'antd' 
+import { Route,  Link } from "react-router-dom";
+import {  Row,Col,Calendar,message  } from 'antd' 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import axios from 'axios' 
+
+import { getCookie,delCookie } from '../utils/cookie.js'
+
+
 import './style/home.less'
 import tile_2 from "../assets/images/tile_2.jpg"
 import tile_3 from "../assets/images/tile_3.jpg"
@@ -25,11 +30,13 @@ class Home extends Component{
             //天气数据
             weather:{},
             //登录
-            loginModalVisible:false
+            loginModalVisible:!!getCookie('loginFailurMessage'),
+            loginErrMeg:""
         }
     }
     componentDidMount(){
         const _this = this;
+        // 第三方服务获取天气接口
         axios.get('http://wthrcdn.etouch.cn/weather_mini?city=厦门')
         .then(function (response) {
             if(response.status === 200){
@@ -41,6 +48,22 @@ class Home extends Component{
         .catch(function (error) {
            console.log(error);
         });
+
+        //在cookies中获取登录错误的反馈信息
+        //读取cookie
+        if( !!getCookie('loginFailurMessage') ){
+            const loginErrorMessage = new Buffer(getCookie('loginFailurMessage'), 'base64').toString() ;
+            message.error( loginErrorMessage )
+            this.setState({
+                loginErrMeg:loginErrorMessage
+            })
+            delCookie('loginFailurMessage');
+        }else{
+            console.log("没有cookies")
+        }
+        
+
+        
     }
     //设置日历浮层容器
     setCalendarContainer =(trigger)=>{
@@ -69,7 +92,7 @@ class Home extends Component{
                             <Col span={12} className="yh-left-panel">
                                  <Row gutter={16}>
                                      <Col span={12}>
-                                           <h3>笔记</h3>
+                                           <Link to="/home/note"> <h3>笔记</h3></Link>  
                                            <h2 className="yh-line"></h2>
                                            <div>
                                                 <img src={tile_note} alt="notes"/>

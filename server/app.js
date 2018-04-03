@@ -27,7 +27,9 @@ onerror(app)
 //base middleware
 app
   .use(cors())
-  .use(bodyparser())
+  .use(bodyparser({
+      enableTypes:['json', 'form', 'text']
+  }))
   .use(json())
   .use(logger())
   .use(views(path.join(__dirname, '/views'), {
