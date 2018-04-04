@@ -1,18 +1,16 @@
 
 
-var Router = require("koa-router");
-const router = new Router()
+const Router = require("koa-router");
+var jsonwebtoken = require('jsonwebtoken');
 
 const { queryData } = require("../../db") 
+const { getUserName,validatePasswrod } = require("../controller/login.js")
 
-var userRouter = require('./users');
+
+const router = new Router()
 
 //首页
-router.get('/home', async (ctx, next) => {
-  const data =  await queryData("SELECT * FROM runoob_tbl where runoob_title = 3");
-  ctx.state = {
-    title: data.runoob_author
-  }
+router.get(['/index'], async (ctx, next) => {
   await ctx.render('index')
 })
 
@@ -21,7 +19,6 @@ router.get('/welcome', async function (ctx, next) {
       ctx.state = {
         title: 'welcome page'
       };
-      
       await ctx.render('welcome', {title: ctx.state} );
 })
 
@@ -32,22 +29,28 @@ router.get('/welcome', async function (ctx, next) {
 */
 
 //登录
-router.post("/api/login",async function(ctx,next){
-      //  ctx.state = {
-      //      username: ctx.request.body.username,
-      //      password: ctx.request.body.password
-      //  };
-     if( false ){
-        ctx.redirect('/welcome'); 
-     }else{
-        //设置登录错误消息的cookie
-        //Buffer 类在 Node.js 中是一个全局变量，因此无需使用 require('buffer').Buffer 
-        ctx.cookies.set("loginFailurMessage",new Buffer('错误消息').toString('base64'),{ httpOnly: false}); 
-        ctx.redirect('/home');
-        //ctx.body = "登录失败";
-     }
-       
-})
+router.post( "/api/login", 
+              async function(ctx,next){
+                  let { username,password }= ctx.request.body ;
+                  let isUserExit = await getUserName( username ) ;
+                  if( isUserExit ){
+                      let isRightPassword = await validatePasswrod( username,password );
+                      if( isRightPassword ){
+                          // var token = jsonwebtoken.sign({ foo: 'bar' }, 'shhhhh');
+                          // console.log( token )
+                          ctx.redirect('/welcome'); 
+                      }else{
+                            ctx.cookies.set("loginFailurMessage",new Buffer('密码错误，请重新登录！').toString('base64'),{ httpOnly: false});
+                            ctx.redirect('/home');
+                      }
+                  }else{
+                    //设置登录错误消息的cookie
+                    //Buffer 类在 Node.js 中是一个全局变量，因此无需使用 require('buffer').Buffer 
+                    ctx.cookies.set("loginFailurMessage",new Buffer('用户不存在！').toString('base64'),{ httpOnly: false});
+                    ctx.redirect('/home');
+                  }
+            }
+)
 
 // other api ...
 

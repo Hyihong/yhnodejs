@@ -49,7 +49,7 @@ class LoginModal extends Component{
         //                 Accept:"text/html"
         //             },
         //             data: {
-        //             username: value.userName,
+        //             username: value.username,
         //             password: value.password,
         //             }
         //         });
@@ -70,7 +70,7 @@ class LoginModal extends Component{
         const { getFieldDecorator,getFieldsError,getFieldError,isFieldTouched,isFieldsTouched } = this.props.form;
 
         //表单域被触发过才解禁登录按钮.
-        const allFieldsTouched =  getAllFilesTouched(['userName','password'], isFieldTouched ) ;
+        const allFieldsTouched =  getAllFilesTouched(['username','password'], isFieldTouched ) ;
         const fieldsHasError = hasErrors(getFieldsError()) 
         
         //console.log( "表单是否有误"+ fieldsHasError )
@@ -91,17 +91,17 @@ class LoginModal extends Component{
             >
                  <Form className="yh-login-form"  onSubmit={ this.handleSubmit } method="post" action="/api/login">
                         <FormItem>
-                        {getFieldDecorator('userName', {
+                        {getFieldDecorator('username', {
                             rules: [{ required: true, message: '用户名不能为空' }],
                         })(
-                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.55)' }} />} placeholder="Username" />
+                            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.55)' }} />} placeholder="Username" name="username"/>
                         )}
                         </FormItem>
                         <FormItem>
                         {getFieldDecorator('password', {
                             rules: [{ required: true, message: '密码不能为空' }],
                         })(
-                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.55)' }} />} type="password" placeholder="Password" />
+                            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.55)' }} />} type="password" placeholder="Password" name="password"/>
                         )}
                         </FormItem>
                         <FormItem>

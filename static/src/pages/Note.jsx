@@ -14,7 +14,10 @@ class Note extends Component{
     render(){
         return(
             <div>
-                 笔记
+                 <form action="/aaa" method ='post'>
+                       <input type="text" name="user"/>
+                       <button type="submit">提交</button>
+                 </form>
             </div>
         )
     }

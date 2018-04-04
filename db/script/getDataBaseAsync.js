@@ -13,8 +13,11 @@ module.exports = async function queryData( sql ){
   
 
   const rtn = await new Promise((resolve,reject)=>{
+
       connection.query( sql , (error, results, fields) => {
-        if (error) throw error ;
+        if (error) {
+            reject( error ) ;
+        };
         resolve( results[0] ) ;
         connection.end() ;
       });
