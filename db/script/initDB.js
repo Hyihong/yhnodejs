@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path')
 const mysql = require('mysql')
 
-const sql = fs.readFileSync( path.resolve(__dirname,'../sql/init.sql'), 'utf8' );
+const sqlList = fs.readFileSync( path.resolve(__dirname,'../sql/init.sql'), 'utf8' );
 
 
 const connection = mysql.createConnection({
@@ -14,7 +14,14 @@ const connection = mysql.createConnection({
 })
 
 
-connection.query( sql , (error, results, fields) => {
-    if (error) throw error ;
-    console.log( results )
-});
+sqlList.split(";").map( sql => {
+    //最后一条为回车换行
+    if(sql !== '\r\n'){
+        connection.query( sql , (error, results, fields) => {
+            console.log(sql)
+            if (error) throw error ;
+            console.log("执行完毕！")
+        });
+    }
+  
+})
