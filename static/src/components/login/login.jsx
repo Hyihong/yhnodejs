@@ -1,10 +1,11 @@
 import React,{Component} from 'react' 
 import axios from 'axios' 
-import {  Row,Col,Calendar,Modal,Form, Icon, Input, Button, Checkbox  } from 'antd' 
+import {  Row,Col,Calendar,Modal,Form, Icon, Input, Button, Checkbox,message  } from 'antd' 
 
 import "./style.less"
 
 const FormItem = Form.Item;
+
 
 
 /**
@@ -37,33 +38,60 @@ class LoginModal extends Component{
     }
 
     handleSubmit=(e)=>{
-        //e.preventDefault();
-        //const { validateFields } = this.props.form ;
 
         //登录方法之一： ajax方法 ： ajax无法在后端进行重定向，只能返回处理结果，再借由前端进行页面跳转
-        // validateFields( (err,value)=>{
-        //     var loginPromise = axios({
-        //             method: 'POST',
-        //             url:'/api/login',
-        //             headers:{
-        //                 Accept:"text/html"
-        //             },
-        //             data: {
-        //             username: value.username,
-        //             password: value.password,
-        //             }
-        //         });
-        //     loginPromise.then( response=>{
-        //          console.log( response )
-        //     },err=>{
-        //         console.log(err)
-        //     }).catch(err=>{
-        //         console.log(err)
-        //     })
-        //  })
+        e.preventDefault();
+        const { validateFields } = this.props.form ;
+        validateFields( (err,value)=>{
+            var loginPromise = axios({
+                    method: 'POST',
+                    url:'/api/login',
+                    headers: {'X-Requested-With': 'XMLHttpRequest'},
+                    // headers:{
+                    //     Accept:"json/html"
+                    // },
+                    data: {
+                    username: value.username,
+                    password: value.password,
+                    }
+                });
 
-        // 登录方法之二（当前使用）:采用表单提交，登录失败的消息借由cookie传递 ;(这样的方式不知是否合理？)
+            loginPromise.then( response=>{
+                 console.log( response )
+                 if( response.status === 200 ){
+                      if( response.data.code !== 0 ){
+                          message.error(response.data.message )
+                      }else{
+                        //验证成功
+                        if (window.localStorage) {
+                            localStorage.setItem("token", response.data.token);	
+                        }else{
+                            message.error("浏览器版本过低，不支持当前技术（localStorage）")
+                        }
+                        //跳转页面
+                        
+                        window.location.href = '/admin'
+                       
+                      }
+                 }
+            },err=>{
+                console.log(err)
+            }).catch(err=>{
+                console.log(err)
+            })
+         })
 
+        // 登录方法之二:采用表单提交，登录失败的消息借由cookie传递 ;(这样的方式不知是否合理？)
+
+    }
+
+    fakeLogin=()=>{
+        console.log("假登录")
+        axios({
+            method:"GET",
+            url:"/admin",
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+        })
     }
     render(){
         const { visible } = this.props;
@@ -89,6 +117,7 @@ class LoginModal extends Component{
                    onCancel ={this.handleModalCancel}
             
             >
+            <button onClick= { this.fakeLogin }>假登录</button>
                  <Form className="yh-login-form"  onSubmit={ this.handleSubmit } method="post" action="/api/login">
                         <FormItem>
                         {getFieldDecorator('username', {

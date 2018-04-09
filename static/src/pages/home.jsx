@@ -1,11 +1,11 @@
 import React,{Component} from 'react' 
 import { Route,  Link } from "react-router-dom";
-import {  Row,Col,Calendar,message  } from 'antd' 
+import {  Row,Col,Calendar  } from 'antd' 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import axios from 'axios' 
 
-import { getCookie,delCookie } from '../utils/cookie.js'
+//import { getCookie,delCookie } from '../utils/cookie.js'
 
 
 import './style/home.less'
@@ -22,6 +22,21 @@ import { view as LoginModal } from "../components/login"
 
  // http://surfhousebarcelona.com/es
 
+ //http request 拦截器
+ axios.interceptors.request.use(
+    config => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Bearer是JWT的认证头部信息
+        config.headers.common['Authorization'] = 'Bearer '+ token;
+      }
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+);
+
 
 class Home extends Component{
     constructor(props){
@@ -30,7 +45,7 @@ class Home extends Component{
             //天气数据
             weather:{},
             //登录
-            loginModalVisible:!!getCookie('loginFailurMessage'),
+            loginModalVisible:false,
             loginErrMeg:""
         }
     }
@@ -49,18 +64,18 @@ class Home extends Component{
            console.log(error);
         });
 
-        //在cookies中获取登录错误的反馈信息
+        // 表单提交方式:在cookies中获取登录错误的反馈信息
         //读取cookie
-        if( !!getCookie('loginFailurMessage') ){
-            const loginErrorMessage = new Buffer(getCookie('loginFailurMessage'), 'base64').toString() ;
-            message.error( loginErrorMessage )
-            this.setState({
-                loginErrMeg:loginErrorMessage
-            })
-            delCookie('loginFailurMessage');
-        }else{
-            console.log("没有cookies")
-        }
+        // if( !!getCookie('loginFailurMessage') ){
+        //     const loginErrorMessage = new Buffer(getCookie('loginFailurMessage'), 'base64').toString() ;
+        //     message.error( loginErrorMessage )
+        //     this.setState({
+        //         loginErrMeg:loginErrorMessage
+        //     })
+        //     delCookie('loginFailurMessage');
+        // }else{
+        //     console.log("没有cookies")
+        // }
         
 
         

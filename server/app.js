@@ -16,7 +16,11 @@ const router = require('./routes') ;
 const middleware = require('koa-webpack');
 const { compilerInstance } = require('./compiler');
 
+//custom middleware
+const auth = require('./middleware/auth.js')
+
 const port = process.env.PORT || config.port
+const isDev = config.isDev;
 
 //创建应用
 const app = new Koa()
@@ -24,10 +28,7 @@ const app = new Koa()
 //错误捕获
 onerror(app)
 
-
 //base middleware
-app
-  //.use(jwt({ secret: 'chenyihong'}).unless({  path: [/\/welcome/] }));
 app
   .use(cors())
   .use(bodyparser({
@@ -40,20 +41,13 @@ app
     map: {'njk': 'nunjucks'},
     extension: 'njk'
   }))
-  
 
-//product
-if(false){
-app
-  .use(require('koa-static')(  path.resolve( __dirname,'../static/dist')  ))
-  .use(router.routes())
-  .use(router.allowedMethods())
-}
 
-//development
-
-if(true){
+if( isDev ){
     app
+      //token验证，拦截401
+      .use( auth() )
+      .use(jwt({ secret: 'chenyihong'}).unless({  path: [/\/home/,/\/api\/*/,/\/error/,/\.*(js|png|jpg|css)/ ] }))
       .use(router.routes())
       .use(router.allowedMethods())
       .use(middleware({
@@ -62,7 +56,14 @@ if(true){
               logLevel: "error" //只在发生错误时才在控制台输出
            }
         })
-      );
+      )
+      
+}else{
+    app
+    .use(jwt({ secret: 'chenyihong'}).unless({  path: [/\/static\/dist/] }))
+    .use(require('koa-static')(  path.resolve( __dirname,'../static/dist')  ))
+    .use(router.routes())
+    .use(router.allowedMethods())
 }
 
 app.on('error', function(err, ctx) {
@@ -74,4 +75,3 @@ app.on('error', function(err, ctx) {
 app.listen(config.port, () => {
   console.log( `正在监听 http://localhost:${config.port}` )
 })
-
