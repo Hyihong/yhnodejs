@@ -1,11 +1,11 @@
 
 
 const Router = require("koa-router");
-var jsonwebtoken = require('jsonwebtoken');
+const jsonwebtoken = require('jsonwebtoken');
 
 const { queryData } = require("../../db") 
 const { getUserName,validatePasswrod } = require("../controller/login.js")
-
+const config = require("../../config/serverConfig.js")
 
 const router = new Router()
 
@@ -16,19 +16,17 @@ router.get(['/home'], async (ctx, next) => {
 
 //管理首页
 router.get('/admin', async function (ctx, next) {
-     
       console.log("进入管理首页路由");
-      console.log( ctx.header )
-      const token = ctx.header.authorization  ;
-      console.log( token )
+      //console.log( ctx.header )
+      //const token = ctx.header.authorization  ;
+      //console.log( token )
       ctx.state = {
         title: 'welcome page'
       };
-      ctx.status = 200 ;
       await ctx.render('welcome', {title: ctx.state} );
 })
 
-//欢迎页
+//错误页面
 router.get('/error', async function (ctx, next) {
   ctx.state = {
     title: '错误页面'
@@ -38,11 +36,21 @@ router.get('/error', async function (ctx, next) {
 
 // Restful风格的API
 /** 
- *   前后端传递数据的api格式  ： /api/xxxxx/
+ *   前后端传递数据的api格式:  /api/xxxxx/
+ *   无需鉴权的apa格式      :  /api/public/xxxx
  * 
 */
 
-//登录
+// 登录鉴权
+router.get("/api/loginAuthCheck",async ( ctx,next )=>{
+    //进入该路由表示已通过授权认证， jsonwebtoken.verify 验证功能已在 koa-jwt 中间件中进行
+    ctx.body={
+      message: '已通过验证',
+      code: 0
+    }
+})
+
+//登录验证
 router.post( "/api/login", 
               async function(ctx,next){
                   let { username,password }= ctx.request.body ;
@@ -51,7 +59,7 @@ router.post( "/api/login",
                       let isRightPassword = await validatePasswrod( username,password );
                       if( isRightPassword ){
                           // 登录成功，生成并在浏览器标识token
-                          var token = jsonwebtoken.sign({ foo: 'bar' }, 'chenyihong');
+                          var token = jsonwebtoken.sign({ foo: 'bar' }, config.tokenSecret);
                           ctx.body = {
                             message: '获取token成功',
                             code: 0,
@@ -79,6 +87,8 @@ router.post( "/api/login",
                   }
             }
 )
+
+
 
 // other api ...
 

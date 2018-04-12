@@ -45,9 +45,14 @@ app
 
 if( isDev ){
     app
-      //token验证，拦截401
-      .use( auth() )
-      .use(jwt({ secret: 'chenyihong'}).unless({  path: [/\/home/,/\/api\/*/,/\/error/,/\.*(js|png|jpg|css)/ ] }))
+      //token验证
+      .use( auth() )        
+      //不需要授权的页面有：/home路由下的：游客
+      //                  /api/public 公共方法
+      //                  /api/login  登录
+      //                  /js|png|css 这些是在开发模式下的资源
+      //                  /待加入 ： 在生产模式下，资源也是不需要授权的           
+      .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/api/login",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css)/ ] }))
       .use(router.routes())
       .use(router.allowedMethods())
       .use(middleware({
