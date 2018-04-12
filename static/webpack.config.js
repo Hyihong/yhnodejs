@@ -2,11 +2,14 @@ const path = require("path")
 
 const config = {
     mode:"development",
-    entry: [path.resolve(__dirname,'./src/index.js')],
+    entry: {
+       index: path.resolve(__dirname,'./src/index.js'),
+       admin: path.resolve(__dirname,'./src/admin.js')
+    },
     output:{ 
       publicPath: '/',
       path:path.resolve(__dirname, "dist"),
-      filename: "main.js",
+      filename: "[name].js",
     },
     module: {
         rules: [
