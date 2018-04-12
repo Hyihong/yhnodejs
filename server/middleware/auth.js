@@ -12,7 +12,7 @@ module.exports =  function auth( ctx,next ){
             ctx.status = 401;
             ctx.body = {
               //error: err.originalError ? err.originalError.message : err.message
-              error: '发生错误'
+              error: 'token验证不成功，请带上正确的token'
             };
           } else {
             throw err;
