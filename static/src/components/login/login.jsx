@@ -86,11 +86,9 @@ class LoginModal extends Component{
     }
 
     fakeLogin=()=>{
-        console.log("假登录")
         axios({
             method:"GET",
             url:"/admin",
-            headers: {'X-Requested-With': 'XMLHttpRequest'},
         })
     }
     render(){

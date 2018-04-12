@@ -9,33 +9,20 @@ import axios from 'axios'
 
 
 import './style/home.less'
-import tile_2 from "../assets/images/tile_2.jpg"
-import tile_3 from "../assets/images/tile_3.jpg"
-import tile_4 from "../assets/images/tile_4.jpg"
-import tile_note from "../assets/images/tile_note.jpg"
-import tile_daily from "../assets/images/tile_daily.jpg"
-import tile_atlas from "../assets/images/tile_atlas.jpg"
+import tile_2 from "../../assets/images/tile_2.jpg"
+import tile_3 from "../../assets/images/tile_3.jpg"
+import tile_4 from "../../assets/images/tile_4.jpg"
+import tile_note from "../../assets/images/tile_note.jpg"
+import tile_daily from "../../assets/images/tile_daily.jpg"
+import tile_atlas from "../../assets/images/tile_atlas.jpg"
 
 //custom components
-import { view as LoginModal } from "../components/login"
+import { view as LoginModal } from "../../components/login"
 
 
  // http://surfhousebarcelona.com/es
 
- //http request 拦截器
- axios.interceptors.request.use(
-    config => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        // Bearer是JWT的认证头部信息
-        config.headers.common['Authorization'] = 'Bearer '+ token;
-      }
-      return config;
-    },
-    error => {
-      return Promise.reject(error);
-    }
-);
+
 
 
 class Home extends Component{
