@@ -6,6 +6,14 @@
 
 {% block content %}
     <div id="root"></div>
-    <script src="./index.js"></script>
+    {# 此处有坑
+       不能采用 ./index.js的路径，会导致资源地址表达为： + resolve(资源请求地址，+“../index.js”)
+       举个栗子，前端为单页面路由的，只要开头是/home的都会匹配到这里（index.njk)来
+       当url 为 "/home" => /index.js
+                "/home/note => /home/index.js
+       就会出现资源路径错误的情况
+       要用"../index.js"的方式才可匹配，目前猜测是node.js读取路径的方法与浏览器有异的原因
+     #}
+    <script src="../index.js"></script>
 {% endblock %}
 

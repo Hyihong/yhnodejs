@@ -38,18 +38,18 @@ class Home extends Component{
     }
     componentDidMount(){
         const _this = this;
-        // 第三方服务获取天气接口
-        axios.get('http://wthrcdn.etouch.cn/weather_mini?city=厦门')
-        .then(function (response) {
-            if(response.status === 200){
-                _this.setState({
-                    weather: response.data.data.forecast[0]
-                })
-            }
-        })
-        .catch(function (error) {
-           console.log(error);
-        });
+        // 第三方服务获取天气接口(2018.4.13呃，接口失效了...)
+        // axios.get('http://wthrcdn.etouch.cn/weather_mini?city=厦门')
+        // .then(function (response) {
+        //     if(response.status === 200){
+        //         _this.setState({
+        //             weather: response.data.data.forecast[0]
+        //         })
+        //     }
+        // })
+        // .catch(function (error) {
+        //    console.log(error);
+        // });
 
         // 表单提交方式:在cookies中获取登录错误的反馈信息
         //读取cookie
@@ -64,8 +64,6 @@ class Home extends Component{
         //     console.log("没有cookies")
         // }
         
-
-        
     }
     //设置日历浮层容器
     setCalendarContainer =(trigger)=>{
@@ -73,7 +71,6 @@ class Home extends Component{
     }
     //显示登录框
     showLoginModal=()=>{
- 
         this.setState({
             loginModalVisible:!this.state.loginModalVisible
         })
@@ -82,13 +79,7 @@ class Home extends Component{
         const { date, high, low, fengxiang } =  this.state.weather;
         return(
             <div className="yh-home">
-                {/* 登录框 */}
-                <LoginModal visible= { this.state.loginModalVisible } onCancel={  this.showLoginModal } ></LoginModal>
-                {/* 首页导航 */}
                 <div className="yh-containter">
-                    <div className="yh-nav">
-                        <span onClick = {this.showLoginModal }><i className="fa fa-arrow-circle-right"></i>管理员登录</span>
-                    </div>
                     <div className="yh-tiles">
                         <Row gutter={16}>
                             <Col span={12} className="yh-left-panel">

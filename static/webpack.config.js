@@ -18,24 +18,26 @@ const config = {
             exclude: /node_modules/,
             use:{
               loader:'babel-loader' ,
+              options: {  sourceMap: true } 
             } 
            
           },
           { 
             test: /\.css$/, 
             use: [
-                {  loader: "style-loader" },
-                {  loader: "css-loader"   },
+                {  loader: "style-loader" ,options: {  sourceMap: true }  },
+                {  loader: "css-loader", options: {  sourceMap: true } },
+
             ]
           },
           { 
             test: /\.less$/, 
             use: [
-                {  loader: "style-loader" },
-                {  loader: "css-loader"   },
+                {  loader: "style-loader" , options: {  sourceMap: true }},
+                {  loader: "css-loader" , options: {  sourceMap: true }  },
                 {  
                     loader: "less-loader",
-                    options: { javascriptEnabled: true } 
+                    options: { javascriptEnabled: true, sourceMap: true } 
                 }
             ]
           },{
@@ -59,7 +61,8 @@ const config = {
           
         ]
       },
-      devtool:"source-map" 
+      devtool:"source-map" ,
+     
 };
   
 module.exports = config;

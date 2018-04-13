@@ -1,41 +1,67 @@
 import React from 'react' 
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router,Route } from "react-router-dom";
-import { Row, Col } from 'antd'
+import { Row, Col,message } from 'antd'
+import { requestInterceptor,responseInterceptor } from './utils/axiosInterceptor'
 import "normalize.css"
 import Home from './pages/public/Home.jsx'
 import Note from './pages/public/Note.jsx'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
-
-
+import Header from './components/share/Header.jsx'
 const appContainer = document.getElementById('root');
 
  //http request 拦截器
  //增加authorization,和 http请求头
+ requestInterceptor(axios);
 
- axios.interceptors.request.use(
-  config => {
-    config.headers.common['X-Requested-With'] = 'XMLHttpRequest' ;
-    const token = localStorage.getItem('token');
-    if (token) {
-      // Bearer是JWT的认证头部信息
-      config.headers.common['Authorization'] = 'Bearer '+ token;
-    }
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
+  // http response 拦截器 
+  responseInterceptor(axios,(error)=>{
+      if( error.toString().slice(-3) === '401' ){
+         // message.info("检测到您还未进行登录或登录过期，请重新登录");   
+      }
+  });
+
+
+var isAuthed = function(){
+   return new Promise( (resolve, reject)=>{
+        axios({
+          method:"GET",
+          url:"/api/loginAuthCheck"
+        }).then( response=>{
+          if( response.status === 200 && response.data.code === 0){
+             resolve( true )
+          }else{
+              message.info("发生未知错误，请刷新重试");
+              reject(false) ;
+          }
+        },error=>{
+          resolve(false) ;
+        })
+   })
+}
+
+async function renderIndex(){
+       let isAuth = await isAuthed();
+         //渲染首页
+        ReactDOM.render(
+          <Router>
+              <div >
+                  <Header authed={ isAuth } ></Header>
+                  <Route exact path="/home" component={ (props)=> Auth( Home,props) } />
+                  <Route exact path="/home/note" component={Note} />
+              </div>
+          </Router>,
+        appContainer
+        );
+}
+
+  // 前端路由拦截方法
+  function Auth( Comp, props){
+    return <Comp { ...props }  ></Comp>
   }
-);
+
+  // start
+  renderIndex();
 
 
-ReactDOM.render(
-    <Router>
-         <div>
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/home/note" component={Note} />
-         </div>
-    </Router>,
-  appContainer
-);

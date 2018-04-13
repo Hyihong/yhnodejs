@@ -9,17 +9,20 @@ const config = require("../../config/serverConfig.js")
 
 const router = new Router()
 
+router.get(/\/home\/note/, async (ctx, next) => {
+  await ctx.render('index')
+}) 
+
 //首页
-router.get(['/home'], async (ctx, next) => {
+router.get(/\/home\/*/, async (ctx, next) => {
+  console.log("游客页面刷新，走后端路由")
   await ctx.render('index')
 })
 
+
+
 //管理首页
 router.get('/admin', async function (ctx, next) {
-      console.log("进入管理首页路由");
-      //console.log( ctx.header )
-      //const token = ctx.header.authorization  ;
-      //console.log( token )
       ctx.state = {
         title: 'welcome page'
       };

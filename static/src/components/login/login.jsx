@@ -115,7 +115,6 @@ class LoginModal extends Component{
                    onCancel ={this.handleModalCancel}
             
             >
-            <button onClick= { this.fakeLogin }>假登录</button>
                  <Form className="yh-login-form"  onSubmit={ this.handleSubmit } method="post" action="/api/login">
                         <FormItem>
                         {getFieldDecorator('username', {
