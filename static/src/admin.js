@@ -1,12 +1,14 @@
 import React from 'react' 
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router,Route } from "react-router-dom";
-import { message } from 'antd'
+import Divider, { message } from 'antd'
 import { requestInterceptor,responseInterceptor } from './utils/axiosInterceptor'
 import "normalize.css"
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
 
+//视图
+import AdminHome from './pages/admin/AdminHome.jsx'
 
 const appContainer = document.getElementById('root');
 
@@ -32,8 +34,11 @@ axios({
 }).then( response=>{
     if( response.status === 200 && response.data.code === 0){
         ReactDOM.render(
-            <Router>
-                    <div>您已进入后台界面</div>
+            <Router> 
+                    <div>
+                        <div>退出系统</div>
+                        <Route exact path="/admin" component={ AdminHome } />
+                    </div>
             </Router>,
             appContainer
         );

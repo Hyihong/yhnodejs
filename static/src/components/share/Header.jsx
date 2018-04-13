@@ -35,7 +35,7 @@ class Header extends Component{
                     {
                         this.props.authed ? 
                         <div>
-                            <a href="/admin"><span onClick = {this.loginout }><i className="fa fa-arrow-circle-right"></i>进入管理后台</span></a>
+                            <a href="/admin"><span onClick = {this.loginout }><i className="fa fa-arrow-circle-right"></i>您已登录，由此进入管理后台</span></a>
                             <span onClick = {this.loginout }><i className="fa fa-arrow-circle-right"></i>退出</span>
                         </div>
                         : 
