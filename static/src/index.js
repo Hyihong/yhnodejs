@@ -9,6 +9,7 @@ import Note from './pages/public/Note.jsx'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
 import Header from './components/public/share/Header.jsx'
+import '../node_modules/font-awesome/css/font-awesome.min.css'
 const appContainer = document.getElementById('root');
 
  //http request 拦截器
