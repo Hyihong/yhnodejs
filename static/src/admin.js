@@ -9,6 +9,7 @@ import axios from 'axios'
 
 //视图
 import AdminHome from './pages/admin/AdminHome.jsx'
+import AddArticle from './pages/admin/AddArticle.jsx'
 import AdminLayout from './components/admin/share/AdminLayout.jsx'
 
 const appContainer = document.getElementById('root');
@@ -39,7 +40,7 @@ axios({
                     <div>
                         <AdminLayout>
                             <Route exact path="/admin" component={ AdminHome } />
-                 
+                            <Route exact path="/admin/addarticle" component={ AddArticle } />
                         </AdminLayout>
                     </div>
             </Router>,

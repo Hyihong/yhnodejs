@@ -20,5 +20,7 @@ __关于整体架构网站设计__
 > 前台后台（这里指的是游客可见页和管理员可见页，后文都用此表示，区分与前端|后端概念的区别）分别采用单页面，
   前台包括登录入口以及网站内容浏览，后台包括内容管理功能。
 
+> 文章列表参考 ： http://demo.cssmoban.com/cssthemes4/egpp_7_documentation/doc-template/docs.html#welcome
+
 
 

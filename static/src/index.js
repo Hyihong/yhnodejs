@@ -8,7 +8,7 @@ import Home from './pages/public/Home.jsx'
 import Note from './pages/public/Note.jsx'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
-import Header from './components/share/Header.jsx'
+import Header from './components/public/share/Header.jsx'
 const appContainer = document.getElementById('root');
 
  //http request 拦截器

@@ -1,7 +1,7 @@
 import React,{Component} from 'react' 
 import axios from 'axios' 
 import { BrowserRouter as Router,Route } from "react-router-dom";
-import { view as LoginModal } from "../../components/login"
+import { view as LoginModal } from "../login"
 
 import "./style.less"
 

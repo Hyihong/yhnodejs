@@ -5,15 +5,16 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import axios from 'axios' 
 import './style/adminHome.less'
+import { view as ArticleTitleList } from '../../components/admin/articleTitleList'
 
 
-const AdminGuideLayout = function(props){
+const AdminNavSection = function(props){
     return(
-        <Row className="yh-admin-guide-layout-row" type="flex" justify="start" >
+        <Row className="yh-admin-guide-layout-row" type="flex" justify="start" style={{background:"#f9f9f9"}} >
             <Col className ="yh-admin-layout-left-wrapper" span={8} >
                 <Row className="yh-admin-layout-left-panel" type="flex" justify="center" align="middle">
                     <Col>
-                           <Button onClick={props.onClick} style={{display:"tableCell"}}>{props.type} </Button>
+                        <Link to= {props.link }><Button style={{display:"tableCell"}}>{props.type} </Button></Link>
                     </Col>
                 </Row>
             </Col>
@@ -23,20 +24,6 @@ const AdminGuideLayout = function(props){
         </Row>
     )
 } 
-
-const ArticleTitleList = function( props){
-    return(
-        <ul>
-            {
-                ['除了小猪佩奇，还有这19种纹身帮你变成社会人','持续的寒意','知音号'].map( item =>{
-                    return <li key={item}>{item}</li>
-                })
-            }
-            <li>查看全部文章</li>
-        </ul>
-      
-    )
-}
 
 const Pictures = function( props){
     return(
@@ -55,9 +42,9 @@ class AdminHome extends Component{
     render(){
         return(
             <div className="yh-admin-home-layout-containter">
-                <AdminGuideLayout type="写文章" rightPanel={ <ArticleTitleList/> } ></AdminGuideLayout>
-                <AdminGuideLayout type="传图片" rightPanel={ <Pictures/>} ></AdminGuideLayout>
-                <AdminGuideLayout type="关于我" ></AdminGuideLayout>
+                <AdminNavSection type="写文章" link="/admin/addarticle" rightPanel={ <ArticleTitleList/> } ></AdminNavSection>
+                <AdminNavSection type="传图片"  link="/admin/addarticle" rightPanel={ <Pictures/>} ></AdminNavSection>
+                <AdminNavSection type="关于我"  link="/admin/addarticle" ></AdminNavSection>
             </div>
         )
        
