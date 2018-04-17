@@ -9,25 +9,20 @@ const config = require("../../config/serverConfig.js")
 
 const router = new Router()
 
-router.get(/\/home\/note/, async (ctx, next) => {
-  await ctx.render('index')
-}) 
 
 //首页
-router.get(/\/home\/*/, async (ctx, next) => {
+router.get(/^\/home\/?/, async (ctx, next) => {
   console.log("游客页面刷新，走后端路由")
   await ctx.render('index')
 })
 
 
-
 //管理首页
-router.get('/admin', async function (ctx, next) {
-      ctx.state = {
-        title: 'welcome page'
-      };
-      await ctx.render('welcome', {title: ctx.state} );
+router.get(["/admin",/^\/admin\//], async  (ctx, next) =>{ 
+      console.log(ctx.url )
+      await ctx.render('welcome');
 })
+
 
 //错误页面
 router.get('/error', async function (ctx, next) {
