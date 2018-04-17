@@ -17,7 +17,7 @@ import tile_daily from "../../assets/images/tile_daily.jpg"
 import tile_atlas from "../../assets/images/tile_atlas.jpg"
 
 //custom components
-import { view as LoginModal } from "../../components/login"
+import { view as LoginModal } from "../../components/public/login"
 
 
  // http://surfhousebarcelona.com/es

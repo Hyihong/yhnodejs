@@ -9,6 +9,7 @@ import axios from 'axios'
 
 //视图
 import AdminHome from './pages/admin/AdminHome.jsx'
+import AdminLayout from './components/admin/share/AdminLayout.jsx'
 
 const appContainer = document.getElementById('root');
 
@@ -36,8 +37,10 @@ axios({
         ReactDOM.render(
             <Router> 
                     <div>
-                        <div>退出系统</div>
-                        <Route exact path="/admin" component={ AdminHome } />
+                        <AdminLayout>
+                            <Route exact path="/admin" component={ AdminHome } />
+                 
+                        </AdminLayout>
                     </div>
             </Router>,
             appContainer

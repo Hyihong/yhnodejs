@@ -32,10 +32,18 @@ const ArticleTitleList = function( props){
                     return <li key={item}>{item}</li>
                 })
             }
+            <li>查看全部文章</li>
         </ul>
       
     )
 }
+
+const Pictures = function( props){
+    return(
+        <div>这里是图片</div>
+    )
+}
+
 class AdminHome extends Component{
     constructor(props){
         super(props);
@@ -48,7 +56,7 @@ class AdminHome extends Component{
         return(
             <div className="yh-admin-home-layout-containter">
                 <AdminGuideLayout type="写文章" rightPanel={ <ArticleTitleList/> } ></AdminGuideLayout>
-                <AdminGuideLayout type="传图片" ></AdminGuideLayout>
+                <AdminGuideLayout type="传图片" rightPanel={ <Pictures/>} ></AdminGuideLayout>
                 <AdminGuideLayout type="关于我" ></AdminGuideLayout>
             </div>
         )
