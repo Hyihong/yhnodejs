@@ -11,7 +11,7 @@ class AddArticle extends Component {
         super(props);
     }
     componentDidMount() {
-
+      
     }
 
     render() {

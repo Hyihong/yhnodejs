@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "buildClient":"node scripts/buildClient.js"
+    "buildClient": "node scripts/buildClient.js"
   },
   "dependencies": {
     "debug": "~2.6.8",
@@ -37,6 +37,7 @@
     "less-loader": "^4.1.0",
     "style-loader": "^0.20.3",
     "url-loader": "^1.0.1",
-    "webpack": "^4.3.0"
+    "webpack": "^4.3.0",
+    "webpack-cli": "^2.0.15"
   }
 }

@@ -1,28 +1,30 @@
 
 
 const Router = require("koa-router");
-const jsonwebtoken = require('jsonwebtoken');
 
-const { queryData } = require("../../db") 
-const { getUserName,validatePasswrod } = require("../controller/login.js")
-const config = require("../../config/serverConfig.js")
 
 const router = new Router()
 
+const articleRouter = require('./article.js') ;
+const loginRouter = require('./login.js') ;
 
-//首页
+/*========================
+ *
+ * 页面请求路由(游客页与管理业分别都是的单页面应用)
+ * 
+ ========================*/
+
+// 游客单页面
 router.get(/^\/home\/?/, async (ctx, next) => {
   console.log("游客页面刷新，走后端路由")
   await ctx.render('index')
 })
 
-
-//管理首页
+//管理员的单页面
 router.get(["/admin",/^\/admin\//], async  (ctx, next) =>{ 
       console.log(ctx.url )
       await ctx.render('welcome');
 })
-
 
 //错误页面
 router.get('/error', async function (ctx, next) {
@@ -32,62 +34,19 @@ router.get('/error', async function (ctx, next) {
   await ctx.render('error', {message: ctx.state} );
 })
 
-// Restful风格的API
 /** 
+ *   Restful风格的API
  *   前后端传递数据的api格式:  /api/xxxxx/
  *   无需鉴权的apa格式      :  /api/public/xxxx
  * 
 */
 
 // 登录鉴权
-router.get("/api/loginAuthCheck",async ( ctx,next )=>{
-    //进入该路由表示已通过授权认证， jsonwebtoken.verify 验证功能已在 koa-jwt 中间件中进行
-    ctx.body={
-      message: '已通过验证',
-      code: 0
-    }
-})
+router.use('',loginRouter.routes(), loginRouter.allowedMethods() )
 
-//登录验证
-router.post( "/api/login", 
-              async function(ctx,next){
-                  let { username,password }= ctx.request.body ;
-                  let isUserExit = await getUserName( username ) ;
-                  if( isUserExit ){
-                      let isRightPassword = await validatePasswrod( username,password );
-                      if( isRightPassword ){
-                          // 登录成功，生成并在浏览器标识token
-                          var token = jsonwebtoken.sign({ foo: 'bar' }, config.tokenSecret);
-                          ctx.body = {
-                            message: '获取token成功',
-                            code: 0,
-                            token
-                          }
-                      }else{
-                            ctx.body = {
-                              message: '密码错误，请重新登录！',
-                              code: 1,
-                            }
-                            // ctx.cookies.set("loginFailurMessage",new Buffer('密码错误，请重新登录！').toString('base64'),{ httpOnly: false});
-                            // ctx.redirect('/home');
-                      }
-                  }else{
-                    // 方法一 ：ajax提交处理
-                    ctx.body = {
-                      message: '用户不存在！',
-                      code: 2,
-                    }
-                    //方法二：表单提交处理）
-                    //设置登录错误消息的cookie
-                    //Buffer 类在 Node.js 中是一个全局变量，因此无需使用 require('buffer').Buffer 
-                    //ctx.cookies.set("loginFailurMessage",new Buffer('用户不存在！').toString('base64'),{ httpOnly: false});
-                    //ctx.redirect('/home');
-                  }
-            }
-)
+//文章操作API
+router.use('/api',articleRouter.routes(), articleRouter.allowedMethods() )
 
 
-
-// other api ...
 
 module.exports = router ;

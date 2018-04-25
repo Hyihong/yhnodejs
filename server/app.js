@@ -52,7 +52,7 @@ if( isDev ){
       //                  /api/login  登录
       //                  /js|png|css 这些是在开发模式下的资源
       //                  /待加入 ： 在生产模式下，资源也是不需要授权的           
-      .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/api/login",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css)/ ] }))
+      .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/api/login","/favicon.icon",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css)/, ] }))
       .use(router.routes())
       .use(router.allowedMethods())
       .use(middleware({
@@ -74,7 +74,7 @@ if( isDev ){
 app.on('error', function(err, ctx) {
   console.log("发生错误");
   console.log(err)
-  logger.error('server error', err, ctx)
+  //logger.error('server error', err, ctx)
 })
 
 app.listen(config.port, () => {
