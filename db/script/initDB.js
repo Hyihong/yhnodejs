@@ -14,13 +14,15 @@ const connection = mysql.createConnection({
 })
 
 
-sqlList.split(";").map( sql => {
+
+sqlList.split(";").map( (sql,index ) => {
+    console.log( index, sql)
     //最后一条为回车换行
-    if(sql !== '\r\n'){
+    
+    if(sql !== ''){
         connection.query( sql , (error, results, fields) => {
-            console.log(sql)
             if (error) throw error ;
-            console.log("执行完毕！")
+            console.log( `第${index + 1 }条sql语句执行完毕！`)
         });
     }
   
