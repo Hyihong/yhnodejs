@@ -57,7 +57,6 @@ class LoginModal extends Component{
                 });
 
             loginPromise.then( response=>{
-                 console.log( response )
                  if( response.status === 200 ){
                       if( response.data.code !== 0 ){
                           message.error(response.data.message )
@@ -70,7 +69,6 @@ class LoginModal extends Component{
                         }
                         //跳转页面
                         window.location.href = '/admin'
-                       
                       }
                  }
             },err=>{

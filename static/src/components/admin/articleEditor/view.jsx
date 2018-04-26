@@ -4,6 +4,7 @@
 */
 import React,{Component} from 'react' 
 import ReactDOM from 'react-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios' 
 import SimpleMDE from 'simplemde'
 import {  Row,Col,Radio,Modal,Form, Icon, Input, Button, Checkbox,message  } from 'antd' 
@@ -30,11 +31,12 @@ class View extends Component{
             autoDownloadFontAwesome:false,
             spellChecker:false //禁止检查拼写，因为采用英文校验，采用中文都会报错
         });
- 
+        //console.log( this )
     }
     submit=()=>{
         let title = ReactDOM.findDOMNode( this.articleTitle ).value.trim() ;
         let content = this.simplemde.value() ;
+        let that = this;
         if( title === '') {
             message.info('标题请勿为空');
             return;
@@ -52,6 +54,15 @@ class View extends Component{
                 type:this.state.radioValue
             }
 
+        }).then( response=>{
+            if( response.status === 200 ){
+                if( response.data.code !== 0 ){
+                    message.error(response.data.message )
+                }else{
+                  //验证成功
+                  console.log("创建成功");
+                }
+           }
         })
     }
     onRadioChange =(e)=>{

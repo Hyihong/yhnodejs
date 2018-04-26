@@ -72,8 +72,8 @@ if( isDev ){
 }
 
 app.on('error', function(err, ctx) {
-  console.log("发生错误");
-  console.log(err)
+  console.log("发生未捕获的错误");
+  //console.log(err)
   //logger.error('server error', err, ctx)
 })
 

@@ -1,12 +1,11 @@
-const jsonwebtoken = require('jsonwebtoken');
 const { getUserName,validatePasswrod } = require("../models/login.js")
+const jsonwebtoken = require('jsonwebtoken');
 const { success,failure } = require('./responseObject');
 const config = require("../../config/serverConfig.js")
 
 const login = async function(ctx,next){
     let { username,password }= ctx.request.body ;
     let isUserExit = await getUserName( username ) ;
-    console.log( isUserExit )
     if( isUserExit ){
         let isRightPassword = await validatePasswrod( username,password );
         if( isRightPassword ){
