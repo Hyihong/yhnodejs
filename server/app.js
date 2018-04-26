@@ -52,7 +52,7 @@ if( isDev ){
       //                  /api/login  登录
       //                  /js|png|css 这些是在开发模式下的资源
       //                  /待加入 ： 在生产模式下，资源也是不需要授权的           
-      .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/api/login","/favicon.icon",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css)/, ] }))
+      .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/favicon.icon",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css)/, ] }))
       .use(router.routes())
       .use(router.allowedMethods())
       .use(middleware({

@@ -39,13 +39,13 @@ class LoginModal extends Component{
 
     handleSubmit=(e)=>{
 
-        //登录方法之一： ajax方法 ： ajax无法在后端进行重定向，只能返回处理结果，再借由前端进行页面跳转
+        // ajax方法 ： ajax无法在后端进行重定向，只能返回处理结果，再借由前端进行页面跳转
         e.preventDefault();
         const { validateFields } = this.props.form ;
         validateFields( (err,value)=>{
             var loginPromise = axios({
                     method: 'POST',
-                    url:'/api/login',
+                    url:'/api/public/login',
                     headers: {'X-Requested-With': 'XMLHttpRequest'},
                     // headers:{
                     //     Accept:"json/html"
@@ -69,7 +69,6 @@ class LoginModal extends Component{
                             message.error("浏览器版本过低，不支持当前技术（localStorage）")
                         }
                         //跳转页面
-                        
                         window.location.href = '/admin'
                        
                       }
@@ -80,17 +79,8 @@ class LoginModal extends Component{
                 console.log(err)
             })
          })
-
-        // 登录方法之二:采用表单提交，登录失败的消息借由cookie传递 ;(这样的方式不知是否合理？)
-
     }
 
-    fakeLogin=()=>{
-        axios({
-            method:"GET",
-            url:"/admin",
-        })
-    }
     render(){
         const { visible } = this.props;
         const { getFieldDecorator,getFieldsError,getFieldError,isFieldTouched,isFieldsTouched } = this.props.form;
@@ -98,10 +88,6 @@ class LoginModal extends Component{
         //表单域被触发过才解禁登录按钮.
         const allFieldsTouched =  getAllFilesTouched(['username','password'], isFieldTouched ) ;
         const fieldsHasError = hasErrors(getFieldsError()) 
-        
-        //console.log( "表单是否有误"+ fieldsHasError )
-        //console.log( "是否已经全部触发"+ allFieldsTouched )
-
 
         return(
             <Modal visible={visible} 

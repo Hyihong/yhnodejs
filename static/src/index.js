@@ -28,7 +28,7 @@ var isAuthed = function(){
    return new Promise( (resolve, reject)=>{
         axios({
           method:"GET",
-          url:"/api/loginAuthCheck"
+          url:"/api/authCheck"
         }).then( response=>{
           if( response.status === 200 && response.data.code === 0){
              resolve( true )

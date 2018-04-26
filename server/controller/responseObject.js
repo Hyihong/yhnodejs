@@ -21,7 +21,7 @@ exports.success = function(){
 
 exports.failure = function(){
     let  o = {
-        code:0,
+        code:1,
         message: '请求失败',
         data:null
     }

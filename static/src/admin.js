@@ -33,7 +33,7 @@ responseInterceptor(axios,(error)=>{
 //在此处进行登录跳转控制，token正确则跳转至/admin页面，token错误前端重定向至首页
 axios({
     method:"GET",
-    url:"/api/loginAuthCheck"
+    url:"/api/authCheck"
 }).then( response=>{
     if( response.status === 200 && response.data.code === 0){
         ReactDOM.render(

@@ -1,13 +1,9 @@
 
 const router = require("koa-router")()
-const { success,failure } = require('./responseObject');
+const articleController = require('../controller/articleController')
 
 
-
-router.post('/article/create', async(ctx,next)=>{
-    console.log( ctx.request.body );
-    ctx.body= success('创建文章成功')
-})
+router.post('/article/create',articleController.createArticle )
 
 
 module.exports = router ;

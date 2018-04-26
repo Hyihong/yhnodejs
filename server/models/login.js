@@ -1,5 +1,4 @@
 
-
 const { queryData } = require("../../db") 
 
 async function getUserName( username ){
