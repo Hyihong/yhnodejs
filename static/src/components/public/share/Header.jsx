@@ -23,6 +23,11 @@ class Header extends Component{
             loginModalVisible:!this.state.loginModalVisible
         })
     }
+
+    loginOut =()=>{
+        localStorage.removeItem("token");	
+        window.location.reload();
+    }
   
     render(){
 
@@ -35,8 +40,8 @@ class Header extends Component{
                     {
                         this.props.authed ? 
                         <div>
-                            <a href="/admin"><span onClick = {this.loginout }><i className="fa fa-arrow-circle-right"></i>您已登录，由此进入管理后台</span></a>
-                            <span onClick = {this.loginout }><i className="fa fa-arrow-circle-right"></i>退出</span>
+                            <a href="/admin"><span><i className="fa fa-arrow-circle-right"></i>您已登录，由此进入管理后台</span></a>
+                            <span onClick = { this.loginOut }><i className="fa fa-arrow-circle-right"></i>退出</span>
                         </div>
                         : 
                         <span onClick = {this.showLoginModal }><i className="fa fa-arrow-circle-right"></i>管理员登录</span> 
