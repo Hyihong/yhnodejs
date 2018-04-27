@@ -11,7 +11,8 @@ class AddArticle extends Component {
         super(props);
     }
     componentDidMount() {
-        //console.log( this.props.location )
+        console.log( this.props.location.pathname )
+        
     }
 
     render() {

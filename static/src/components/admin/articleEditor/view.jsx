@@ -4,7 +4,7 @@
 */
 import React,{Component} from 'react' 
 import ReactDOM from 'react-dom'
-import { Redirect } from 'react-router-dom'
+import { Redirect,withRouter } from 'react-router-dom'
 import axios from 'axios' 
 import SimpleMDE from 'simplemde'
 import {  Row,Col,Radio,Modal,Form, Icon, Input, Button, Checkbox,message  } from 'antd' 
@@ -31,7 +31,6 @@ class View extends Component{
             autoDownloadFontAwesome:false,
             spellChecker:false //禁止检查拼写，因为采用英文校验，采用中文都会报错
         });
-        //console.log( this )
     }
     submit=()=>{
         let title = ReactDOM.findDOMNode( this.articleTitle ).value.trim() ;
@@ -60,7 +59,10 @@ class View extends Component{
                     message.error(response.data.message )
                 }else{
                   //验证成功
-                  console.log("创建成功");
+                  message.info( response.data.message )
+                  setTimeout( ()=>{
+                    this.props.history.push('/admin')
+                  },2000)
                 }
            }
         })
@@ -94,4 +96,4 @@ class View extends Component{
 }
 
 
-export default View ;
+export default withRouter(View) ;

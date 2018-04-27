@@ -2,7 +2,7 @@
 
 import React,{Component} from 'react' 
 import axios from 'axios' 
-import { BrowserRouter as Router,Route } from "react-router-dom";
+import { BrowserRouter as Router,Route,Link } from "react-router-dom";
 import "./style.less"
 
 
@@ -20,6 +20,7 @@ class AdminLayout extends Component{
            <div className="yh-admin-layout">
                     <div className="yh-admin-header" >
                       <a href="/home"><span className="yh-admin-nav-span">首页</span></a>
+                      <Link to="/admin"><span className="yh-admin-nav-span">管理首页</span></Link>
                       <span className="yh-admin-nav-span" onClick ={this.loginOut }>退出系统</span>
                     </div>
                  <div className="yh-admin-layout-base">
