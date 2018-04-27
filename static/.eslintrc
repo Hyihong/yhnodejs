@@ -1,0 +1,16 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module"
+      },
+    "rules": {
+        "semi":0,
+        "no-unused-vars":1,
+        "no-console":0,
+        "no-undef":0
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+      ]
+}
