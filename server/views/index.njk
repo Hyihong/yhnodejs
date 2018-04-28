@@ -14,8 +14,8 @@
        当url 为 "/home" => /index.js
                 "/home/note => /home/index.js
        就会出现资源路径错误的情况
-       要用"../index.js"的方式才可匹配，目前猜测是node.js读取路径的方法与浏览器有异的原因
+       要用"/index.js"的方式才可匹配，此时用的是绝对路径
      #}
-    <script src="../index.js"></script>
+    <script src="/index.js"></script>
 {% endblock %}
 
