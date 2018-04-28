@@ -113,12 +113,10 @@ class Home extends Component{
                                  <Row gutter={8}>
                                      <Col span={12}>
                                         <div className="yh-tiles-data">
-                                             {/* <h3> { moment().format('MMMM YYYY') } </h3>
-                                             <Calendar fullscreen={false} style={{ width: "100%",height:"100%",borderRadius: 4 }}
-                                                       onSelect={ function(moment){ console.log(moment) } }
-                                                       onPanelChange = { (value,mode)=>{ }}
-                                            ></Calendar >     */}
+                                            
                                         </div>
+                                        <Link to="/home/introduce/mysite"> <h3>个站介绍</h3></Link> 
+                                        <h2 className="yh-line" style={{width:'75px'}}></h2>
                                     </Col>
                                      <Col span={12}>
                                          <Row gutter={8} className="yh-little-tiles" >

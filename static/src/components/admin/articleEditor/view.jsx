@@ -32,7 +32,7 @@ class View extends Component{
             spellChecker:false //禁止检查拼写，因为采用英文校验，采用中文都会报错
         });
     }
-    submit=()=>{
+    submit= ()=>{
         let title = ReactDOM.findDOMNode( this.articleTitle ).value.trim() ;
         let content = this.simplemde.value() ;
         let that = this;
@@ -52,7 +52,6 @@ class View extends Component{
                 content: content,
                 type:this.state.radioValue
             }
-
         }).then( response=>{
             if( response.status === 200 ){
                 if( response.data.code !== 0 ){

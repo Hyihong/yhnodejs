@@ -14,14 +14,13 @@ module.exports = async function queryData( sql ){
 
   const rtn = await new Promise((resolve,reject)=>{
       connection.query( sql , (error, results, fields) => {
-        
         if (error) {
             reject( error ) ;
         };
     
         if( Object.prototype.toString.call( results )=='[object Array]' ){
             //查询结果
-            resolve( results[0] ) ;
+            resolve( results ) ;
         }
         if( Object.prototype.toString.call( results )=='[object Object]'){
             resolve( true )

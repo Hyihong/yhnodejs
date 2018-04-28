@@ -15,4 +15,17 @@ async function db_insertCreateInfo( id, title,content,type, time ){
     return result ;
 }
 
+async function db_selectArticleOverview(){
+    var result;
+    let sql = `SELECT article_id,article_title from article`;
+    try{
+         result  =  await queryData(sql)
+    }catch(e){
+        result = { code:"数据库操作失败", message: e.code };
+    }
+    
+    return result ;
+}
+
 exports.db_insertCreateInfo =  db_insertCreateInfo;
+exports.db_selectArticleOverview =  db_selectArticleOverview;

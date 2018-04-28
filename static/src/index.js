@@ -6,6 +6,7 @@ import { requestInterceptor,responseInterceptor } from './utils/axiosInterceptor
 import "normalize.css"
 import Home from './pages/public/Home.jsx'
 import Note from './pages/public/Note.jsx'
+import IntroduceMysite from './pages/public/IntroduceSite.jsx'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
 import Header from './components/public/share/Header.jsx'
@@ -51,6 +52,7 @@ async function renderIndex(){
                   <Header authed={ isAuth } ></Header>
                   <Route exact path="/home" component={ (props)=> Auth( Home,props) } />
                   <Route exact path="/home/note" component={Note} />
+                  <Route exact path="/home/introduce/mysite" component={IntroduceMysite} />
               </div>
           </Router>,
         appContainer

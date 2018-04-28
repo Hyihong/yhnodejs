@@ -1,11 +1,11 @@
 import React,{Component} from 'react' 
-import { Route,  Link } from "react-router-dom";
+import { Route,  Link,withRouter } from "react-router-dom";
 import {  Row,Col,Button,Card   } from 'antd' 
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import axios from 'axios' 
 import './style/adminHome.less'
-import { view as ArticleTitleList } from '../../components/admin/articleTitleList'
+import { view as ArticleTitleList } from '../../components/admin/articleOverview'
 
 
 const AdminNavSection = function(props){
@@ -14,7 +14,7 @@ const AdminNavSection = function(props){
             <Col className ="yh-admin-layout-left-wrapper" span={8} >
                 <Row className="yh-admin-layout-left-panel" type="flex" justify="center" align="middle">
                     <Col>
-                        <Link to= {props.link }><Button style={{display:"tableCell"}}>{props.type} </Button></Link>
+                        <Link to= { props.link }><Button style={{display:"tableCell"}}>{props.type} </Button></Link>
                     </Col>
                 </Row>
             </Col>
@@ -42,8 +42,8 @@ class AdminHome extends Component{
     render(){
         return(
             <div className="yh-admin-home-layout-containter">
-                <AdminNavSection type="写文章" link="/admin/addarticle" rightPanel={ <ArticleTitleList/> } ></AdminNavSection>
-                <AdminNavSection type="传图片"  link="/admin/addarticle" rightPanel={ <Pictures/>} ></AdminNavSection>
+                <AdminNavSection type="写文章" link="/admin/article/addarticle" rightPanel={ <ArticleTitleList/> } ></AdminNavSection>
+                <AdminNavSection type="传图片"  link="/admin/article" rightPanel={ <Pictures/>} ></AdminNavSection>
                 <AdminNavSection type="关于我"  link="/admin/addarticle" ></AdminNavSection>
             </div>
         )

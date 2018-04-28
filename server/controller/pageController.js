@@ -10,7 +10,7 @@ const home = async (ctx, next) => {
 
 //管理首页
 const admin = async  (ctx, next) =>{ 
-    console.log(ctx.url )
+    console.log("管理页面" + ctx.url )
     await ctx.render('welcome');
 }
 

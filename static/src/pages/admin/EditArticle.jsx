@@ -12,12 +12,12 @@ class AddArticle extends Component {
     }
     componentDidMount() {
         //console.log( this.props.location.pathname )
-        
     }
 
     render() {
         return (
             <div>
+                编辑文章
                 <ArticleEditor></ArticleEditor>
             </div>
         )

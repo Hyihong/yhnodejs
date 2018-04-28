@@ -11,6 +11,7 @@ import '../node_modules/font-awesome/css/font-awesome.min.css'
 //视图
 import AdminHome from './pages/admin/AdminHome.jsx'
 import AddArticle from './pages/admin/AddArticle.jsx'
+// import EditArticle from './pages/admin/EditArticle.jsx'
 import AdminLayout from './components/admin/share/AdminLayout.jsx'
 
 const appContainer = document.getElementById('root');
@@ -41,7 +42,8 @@ axios({
                     <div>
                         <AdminLayout>
                             <Route exact path="/admin" component={ AdminHome } />
-                            <Route exact path="/admin/addarticle" component={ AddArticle } />
+                            <Route exact path="/admin/article/addarticle" component={AddArticle} />
+                            <Route exact path="/admin/article/editarticle" component={ AddArticle } />}
                         </AdminLayout>
                     </div>
             </Router>,

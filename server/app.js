@@ -58,6 +58,7 @@ if( isDev ){
       .use(middleware({
            compiler:compilerInstance,
            dev:{
+              publicPath:"/",
               logLevel: "error" //只在发生错误时才在控制台输出
            }
         })
@@ -65,6 +66,7 @@ if( isDev ){
       
 }else{
     app
+    .use( auth() )     
     .use(jwt({ secret: 'chenyihong'}).unless({  path: [/\/static\/dist/] }))
     .use(require('koa-static')(  path.resolve( __dirname,'../static/dist')  ))
     .use(router.routes())
