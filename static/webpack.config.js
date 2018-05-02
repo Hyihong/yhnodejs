@@ -17,7 +17,8 @@ const config = {
             test: /\.js|jsx$/, 
             exclude: /node_modules/,
             use:{
-              loader:'babel-loader' ,
+              //loader:'babel-loader' ,
+              loader: path.resolve(__dirname,'./node_modules/babel-loader') ,
               options: {  sourceMap: true } 
             } 
            
@@ -25,18 +26,18 @@ const config = {
           { 
             test: /\.css$/, 
             use: [
-                {  loader: "style-loader" ,options: {  sourceMap: true }  },
-                {  loader: "css-loader", options: {  sourceMap: true } },
+                {  loader: path.resolve(__dirname,'./node_modules/style-loader') ,options: {  sourceMap: true }  },
+                {  loader: path.resolve(__dirname,'./node_modules/css-loader'), options: {  sourceMap: true } },
 
             ]
           },
           { 
             test: /\.less$/, 
             use: [
-                {  loader: "style-loader" , options: {  sourceMap: true }},
-                {  loader: "css-loader" , options: {  sourceMap: true }  },
+                {  loader: path.resolve(__dirname,'./node_modules/style-loader') , options: {  sourceMap: true }},
+                {  loader: path.resolve(__dirname,'./node_modules/css-loader') , options: {  sourceMap: true }  },
                 {  
-                    loader: "less-loader",
+                    loader: path.resolve(__dirname,'./node_modules/less-loader'),
                     options: { javascriptEnabled: true, sourceMap: true } 
                 }
             ]
@@ -44,7 +45,7 @@ const config = {
             test: /\.(png|jpe?g|gif|bmp)$/,
             use: [
                 {
-                  loader: 'url-loader',
+                  loader: path.resolve(__dirname,'./node_modules/url-loader'),
                   options: {
                     limit: 2048
                   }
@@ -54,7 +55,7 @@ const config = {
             exclude: [/\.html$/,/\.(js|jsx)$/,/\.css$/,/\.json$/,/\.bmp$/,/\.gif$/,/\.jpe?g$/,/\.png$/,/\.less$/],
             use: [
                 {
-                  loader: 'url-loader',
+                  loader: path.resolve(__dirname,'./node_modules/url-loader'),
                 }
             ]
           }
