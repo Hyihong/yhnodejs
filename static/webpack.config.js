@@ -25,6 +25,7 @@ const config = {
           },
           { 
             test: /\.css$/, 
+            //exclude: /node_modules/,
             use: [
                 {  loader: path.resolve(__dirname,'./node_modules/style-loader') ,options: {  sourceMap: true }  },
                 {  loader: path.resolve(__dirname,'./node_modules/css-loader'), options: {  sourceMap: true } },
@@ -51,18 +52,13 @@ const config = {
                   }
                 }
             ]
-          },{
-            exclude: [/\.html$/,/\.(js|jsx)$/,/\.css$/,/\.json$/,/\.bmp$/,/\.gif$/,/\.jpe?g$/,/\.png$/,/\.less$/],
-            use: [
-                {
-                  loader: path.resolve(__dirname,'./node_modules/url-loader'),
-                }
-            ]
-          }
+           },
+           { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+           { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
           
         ]
       },
-      devtool:"source-map" ,
+      devtool:"cheap-source-map",
      
 };
   
