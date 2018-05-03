@@ -3,7 +3,6 @@ import { Route, Link } from "react-router-dom";
 import { Row, Col, Button, Card } from 'antd'
 import axios from 'axios'
 //import './style/adminHome.less'
-import { view as ArticleEditor } from '../../components/admin/articleEditor'
 
 
 class AddArticle extends Component {
@@ -18,7 +17,6 @@ class AddArticle extends Component {
         return (
             <div>
                 编辑文章
-                <ArticleEditor></ArticleEditor>
             </div>
         )
     }
