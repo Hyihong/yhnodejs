@@ -42,7 +42,7 @@ class AdminHome extends Component{
     render(){
         return(
             <div className="yh-admin-home-layout-containter">
-                <AdminNavSection type="写文章" link="/admin/article/addarticle" rightPanel={ <ArticleTitleList/> } ></AdminNavSection>
+                <AdminNavSection type="写文章" link="/admin/article/create" rightPanel={ <ArticleTitleList/> } ></AdminNavSection>
                 <AdminNavSection type="传图片"  link="/admin/article" rightPanel={ <Pictures/>} ></AdminNavSection>
                 <AdminNavSection type="关于我"  link="/admin/addarticle" ></AdminNavSection>
             </div>
