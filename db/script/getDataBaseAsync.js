@@ -4,6 +4,7 @@ const mysql  = require('mysql');
 
 
 module.exports = async function queryData( sql ){
+
   const connection = mysql.createConnection({
         host     : '127.168.4.45',   // 数据库地址
         user     : 'root',    // 数据库用户

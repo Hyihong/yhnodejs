@@ -28,8 +28,8 @@ router.get('/error', pageController.page404 )            //错误页面
 ========================*/
 
 
-router.use('',loginRouter.routes(), loginRouter.allowedMethods() )        // 登录鉴权
-router.use('/api',articleRouter.routes(), articleRouter.allowedMethods() )//文章操作API
+router.use('',loginRouter.routes(), loginRouter.allowedMethods() )         // 登录鉴权
+router.use('/api',articleRouter.routes(), articleRouter.allowedMethods() ) //文章操作API
 
 
 module.exports = router ;

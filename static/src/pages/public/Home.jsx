@@ -23,8 +23,6 @@ import { view as LoginModal } from "../../components/public/login"
  // http://surfhousebarcelona.com/es
 
 
-
-
 class Home extends Component{
     constructor(props){
         super(props);

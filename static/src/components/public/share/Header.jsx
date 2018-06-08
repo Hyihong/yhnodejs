@@ -1,6 +1,6 @@
 import React,{Component} from 'react' 
 import axios from 'axios' 
-import { BrowserRouter as Router,Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { view as LoginModal } from "../login"
 
 import "./style.less"
@@ -40,11 +40,16 @@ class Header extends Component{
                     {
                         this.props.authed ? 
                         <div>
-                            <a href="/admin"><span><i className="fa fa-arrow-circle-right"></i>您已登录，由此进入管理后台</span></a>
+                            <Link to="/home"><i className="fa fa-home"></i>首页</Link>
+                            <a href="/admin"><span><i className="fa fa-arrow-circle-right"></i>进入管理后台</span></a>
                             <span onClick = { this.loginOut }><i className="fa fa-arrow-circle-right"></i>退出</span>
                         </div>
                         : 
-                        <span onClick = {this.showLoginModal }><i className="fa fa-arrow-circle-right"></i>管理员登录</span> 
+                        <div>
+                            <Link to="/home"><i className="fa fa-home"></i>首页</Link>
+                            <span onClick = {this.showLoginModal }><i className="fa fa-arrow-circle-right"></i>管理员登录</span> 
+                        </div>
+                        
                     }
                      
                      

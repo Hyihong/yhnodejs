@@ -22,15 +22,13 @@ class View extends Component{
                 }
             }
          })
-
-
     }
     render(){
         return (<ul>
             {
                 this.state.articleOverview.map( item=> 
-                    <Link to={{pathname:`/admin/article/editarticle` }} key={item.article_id }>
-                        <li > {item.article_title }</li>
+                    <Link to={{pathname:`/admin/article/edit`,search: `?id=${item.article_id}`, }} key={item.article_id }>
+                        <li><span>{item.article_type === 1 ? "【笔记】" :"【杂谈】"}</span>{item.article_title }</li>
                     </Link>)
             }
         </ul>)

@@ -27,11 +27,7 @@ class AdminLayout extends Component{
                       { this.props.children }
                  </div>
            </div>
-           
-           
-        )  
-       
-          
+        ) 
     }
 }
 
