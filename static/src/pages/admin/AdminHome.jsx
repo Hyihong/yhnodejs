@@ -5,31 +5,24 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import axios from 'axios' 
 import './style/adminHome.less'
-import { view as ArticleTitleList } from '../../components/admin/articleOverview'
-
+import { view as ArticleTitleList } from '../../components/admin/articleOverview' //标题概览
+import nav1 from "../../assets/images/admin/admin-nav1.jpg"
+import nav2 from "../../assets/images/admin/admin-nav2.jpg"
+import nav3 from "../../assets/images/admin/admin-nav3.jpg"
+import nav4 from "../../assets/images/admin/admin-nav4.jpg"
 
 const AdminNavSection = function(props){
     return(
-        <Row className="yh-admin-guide-layout-row" type="flex" justify="start" style={{background:"#f9f9f9"}} >
-            <Col className ="yh-admin-layout-left-wrapper" span={8} >
-                <Row className="yh-admin-layout-left-panel" type="flex" justify="center" align="middle">
-                    <Col>
-                        <Link to= { props.link }><Button style={{display:"tableCell"}}>{props.type} </Button></Link>
-                    </Col>
-                </Row>
-            </Col>
-            <Col className="rightPanel" span={16}>
-                  { props.rightPanel }
-            </Col>
-        </Row>
+        <Col className="yh-admin-guide-layout-col" xs={{span:20}} sm={{span:10}}>
+            <Row className="yh-admin-layout-panel" justify="center" align="middle">
+                <img className="yh-admin-nav-img" src={props.navImg} alt="导航图片"/>
+                <div>
+                    <Link to= { props.link } className="yh-admin-nav-text"><Button style={{display:"tableCell"}}>{props.type} </Button></Link>
+                </div>
+            </Row>
+        </Col>
     )
 } 
-
-const Pictures = function( props){
-    return(
-        <div>这里是图片</div>
-    )
-}
 
 class AdminHome extends Component{
     constructor(props){
@@ -41,11 +34,12 @@ class AdminHome extends Component{
   
     render(){
         return(
-            <div className="yh-admin-home-layout-containter">
-                <AdminNavSection type="写文章" link="/admin/article/create" rightPanel={ <ArticleTitleList/> } ></AdminNavSection>
-                <AdminNavSection type="传图片"  link="/admin/article" rightPanel={ <Pictures/>} ></AdminNavSection>
-                <AdminNavSection type="关于我"  link="/admin/addarticle" ></AdminNavSection>
-            </div>
+            <Row className="yh-admin-home-layout-containter" type="flex" justify="center">
+                <AdminNavSection type="文章管理"  link="/admin/article/create" navImg={nav1} ></AdminNavSection>
+                <AdminNavSection type="图片管理"  link="/admin/article"        navImg={nav2} ></AdminNavSection>
+                <AdminNavSection type="简历管理"  link="/admin/addarticle"     navImg={nav3} ></AdminNavSection>
+                <AdminNavSection type="建站管理"  link="/admin/addarticle"     navImg={nav4} ></AdminNavSection>
+            </Row>
         )
        
     }

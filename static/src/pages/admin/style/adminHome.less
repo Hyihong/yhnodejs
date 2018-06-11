@@ -1,16 +1,37 @@
-//管理主页 导航布局
-.yh-admin-guide-layout-row{
-    .yh-admin-layout-left-wrapper{
+//管理主页
+.yh-admin-home-layout-containter{
+    margin:100px auto 10px auto;
+
+}
+
+.yh-admin-guide-layout-col{
+    .yh-admin-layout-panel{
         height:200px;
-        margin-bottom:-1px;
-        .yh-admin-layout-left-panel{
-            height:100%;
+        padding:15px;
+        margin:20px 20px 0 20px;
+        border:2px solid #e5e5e5;
+        border-radius: 5px;
+        .yh-admin-nav-img{
             width:100%;
-            border: 1px solid #d6d6d6;
+            height:100%;
         }
+        .yh-admin-nav-text{
+            position:absolute;
+            top:15px;
+            left:15px;
+            right:15px;
+            bottom:15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:rgba(40, 70, 102,0.4);
+            button{
+                border:0;
+                background:rgba(255, 255, 255,1 );
+                color:#000;
+                line-height: 2;
+            }
+        }   
     }
 }
 
-.yh-admin-home-layout-containter{
-    margin:100px auto 10px auto;
-}

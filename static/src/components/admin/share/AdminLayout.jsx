@@ -20,7 +20,7 @@ class AdminLayout extends Component{
            <div className="yh-admin-layout">
                     <div className="yh-admin-header" >
                       <a href="/home"><span className="yh-admin-nav-span">首页</span></a>
-                      <Link to="/admin"><span className="yh-admin-nav-span">管理首页</span></Link>
+                      <Link to="/admin"><span className="yh-admin-nav-span">后台首页</span></Link>
                       <span className="yh-admin-nav-span" onClick ={this.loginOut }>退出系统</span>
                     </div>
                  <div className="yh-admin-layout-base">
