@@ -34,7 +34,8 @@ class EditArticle extends Component {
             autofocus:false,
             placeholder:'写点什么吧~',
             autoDownloadFontAwesome:false,
-            spellChecker:false //禁止检查拼写，因为采用英文校验，采用中文都会报错
+            spellChecker:false, //禁止检查拼写，因为采用英文校验，采用中文都会报错
+            forceSync:true //如果设置为true，则强制在SimpleMDE中进行的文本更改立即存储在原始textarea中。默认为false
         });
         //根据文章ID请求文章详细数据
         axios({

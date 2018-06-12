@@ -19,7 +19,12 @@ async function db_insertCreateInfo( id, title,content,type, time ){
 //请求文章概览数据（包括文章ID,文章标题，文章类型 ）
 async function db_selectArticleOverview(){
     let result;
-    let sql = `SELECT article_id,article_title,article_type from article`;
+    let sql = `SELECT article_id AS ID,
+                      article_title AS title,
+                      article_type AS type,
+                      CONCAT ( SUBSTRING(article_content,1,70),"...") AS overview,
+                      last_eidt_time as lastTime 
+                from article`;
     try{
          result  =  await queryData(sql)
     }catch(e){
