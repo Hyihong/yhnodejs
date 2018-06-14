@@ -1,6 +1,6 @@
 
 const uuidv1 = require('uuid/v1');
-const { db_insertCreateInfo,db_selectArticleOverview,db_getArticleDetail,db_modifyArticle } = require("../models/article.js")
+const { db_insertCreateInfo,db_selectArticleOverview,db_getArticleDetail,db_modifyArticle,db_deleteArticle } = require("../models/article.js")
 const { success,failure } = require('./responseObject');
 const { queryData } = require("../../db") 
 
@@ -33,11 +33,17 @@ async function getDetailArticle( ctx,next){
     ctx.body= success('请求成功',result);
 }
 
+//删除文章
+async function deleteArticle( ctx,next){
+    const result = await db_deleteArticle(ctx.query.id);
+    ctx.body= success('删除成功',result);
+}
 
 module.exports = {
     createArticle: createArticle,
     getTitleOverview: getTitleOverview,
     getDetailArticle: getDetailArticle,
-    modifyArticle: modifyArticle
+    modifyArticle: modifyArticle,
+    deleteArticle:deleteArticle
 }
 

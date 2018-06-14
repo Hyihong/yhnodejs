@@ -3,8 +3,6 @@
    URL：   https://github.com/sparksuite/simplemde-markdown-editor
 */
 import React,{Component} from 'react' 
-import ReactDOM from 'react-dom'
-import { Redirect,withRouter } from 'react-router-dom'
 import axios from 'axios' 
 import SimpleMDE from 'simplemde'
 import {  Row,Col,Radio,Modal,Form, Icon, Input, Button, Checkbox,message  } from 'antd' 

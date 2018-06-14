@@ -3,6 +3,7 @@ import axios from 'axios'
 import {  List,Row,Col,Tag,Modal,Form, Icon, Input, Button, Checkbox,message, Divider  } from 'antd' 
 import { Link } from 'react-router-dom'
 import './style.less'
+import { getQueryString } from '../../../utils/base.js'
 class View extends Component{
     constructor(props){
         super( props );
@@ -19,10 +20,42 @@ class View extends Component{
             if( response.status === 200 ){
                 if( response.data.code === 0 ){
                     this.setState({articleOverview: response.data.data})
-                    console.log(response.data.data)
                 }
             }
          })
+    }
+    componentWillUpdate(nextProps,nextStatus){
+            console.log( nextStatus )
+    }
+    // 删除文章
+    delete =(id)=>{
+        let that = this;
+        Modal.confirm({
+            title: '确认删除该文章？',
+            content: '删除后文章不可恢复？',
+            okText: '确认删除',
+            okType: 'danger',
+            cancelText: '取消',
+            onOk() {
+                axios({
+                    method:'GET',
+                    url:`/api/article/delete`,
+                    params: {id: id }
+                }).then( response =>{
+                   if( response.status === 200 ){
+                       if( response.data.code === 0 ){
+                           that.state.articleOverview.map( (item,idx )=>{
+                               if(item.ID === id){
+                                   //视图层删除该条记录
+                                   that.state.articleOverview.splice(idx,1)
+                                   that.setState({ articleOverview : that.state.articleOverview })
+                               }
+                           })
+                       }
+                   }
+                })
+            },
+        })
     }
     render(){
         return (
@@ -42,7 +75,7 @@ class View extends Component{
                                <h3>{item.type === 1 ? <Tag color="purple">笔记</Tag> :<Tag color="cyan">杂谈</Tag>}{item.title }</h3>
                             </Link>
                             <div className="yh-overview-content">{item.overview}</div>
-                            <span>更新时间:{item.lastTime}</span>
+                            <span>更新时间:{item.lastTime}</span> <span className="yh-delete-article-btn" onClick={ ()=>this.delete(item.ID) }>删除</span>
                        </List.Item>
                     )
                 }

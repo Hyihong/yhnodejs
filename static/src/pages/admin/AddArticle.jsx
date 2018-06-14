@@ -61,7 +61,7 @@ class AddArticle extends Component {
                   //验证成功
                   message.info( response.data.message )
                   setTimeout( ()=>{
-                    this.props.history.push('/admin')
+                    this.props.history.push('/admin/article/index')
                   },2000)
                 }
            }

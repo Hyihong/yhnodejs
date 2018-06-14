@@ -1,14 +1,21 @@
-.yh-article-filter{
+
+.yh-article-right{
     position:fixed;
     width:200px;
+    top:100px;
     margin-left:5px;
+}
+.yh-article-filter{
     cursor:pointer;
+    border:1px solid #e8e8e8;
+    padding:10px 0 0 0;
+    margin-top:30px;
+    text-align: center;
     div{
-        text-indent: 20px;
         font-size:16px;
         border-radius:5px;
         line-height: 2;
-        margin-bottom:2px;
+        margin-top:2px;
         &:nth-child(2){
             color:#13c2c2;
             background:#e6fffb
@@ -18,4 +25,16 @@
             background:#f9f0ff
         }
     }
+}
+.yh-create-article-btn{
+    text-align:center;
+    overflow: hidden; 
+    span{
+       background:#528fac;
+       color:#fff;
+       line-height:40px;
+       padding:10px 30px;
+       border-radius: 10px;
+       cursor:pointer;
+   }
 }

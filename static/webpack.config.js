@@ -58,7 +58,7 @@ const config = {
           
         ]
       },
-      devtool:"cheap-source-map",
+      devtool:"source-map",
      
 };
   

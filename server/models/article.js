@@ -65,10 +65,23 @@ async function db_modifyArticle(modify){
     } 
     return result;
 }
+
+async function db_deleteArticle(id){
+    let result;
+    let sql = `delete from article where article_id="${id}"`;
+    try{
+        result  =  await queryData(sql)
+    }catch(e){
+        result = { code:"数据库操作失败!", message: e.code };
+    } 
+    return result;
+}
+
 module.exports ={
     db_insertCreateInfo:db_insertCreateInfo,
     db_selectArticleOverview:db_selectArticleOverview,
     db_getArticleDetail:db_getArticleDetail,
     db_modifyArticle:db_modifyArticle,
+    db_deleteArticle:db_deleteArticle
 }
 
