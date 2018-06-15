@@ -38,7 +38,7 @@ class EditArticle extends Component {
         //根据文章ID请求文章详细数据
         axios({
             method:'GET',
-            url:`/api/article/getDetail?id=${this.id}`,
+            url:`/api/public/article/getDetail?id=${this.id}`,
         }).then( response =>{
             if( response.status === 200 ){
                  const _data = response.data.data[0];

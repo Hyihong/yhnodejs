@@ -1,4 +1,5 @@
 import React,{Component} from 'react' 
+import ArticleList from '../admin/articleIndex.jsx'
 import {  Row,Col,Calendar  } from 'antd' 
 
 
@@ -9,12 +10,12 @@ class Note extends Component{
       
     }
     componentDidMount(){
-       
+         
     }
     render(){
         return(
-            <div>
-                文章列表页面
+            <div style={{ maxWidth: '800px',margin: '20px auto 10px auto'}}>
+               <ArticleList></ArticleList>
             </div>
         )
     }

@@ -83,11 +83,13 @@ class Home extends Component{
                             <Col span={12} className="yh-left-panel">
                                  <Row gutter={16}>
                                      <Col span={12}>
+                                           <figure>   
                                            <Link to="/home/note"> <h3>我的笔记</h3></Link>  
-                                           <h2 className="yh-line"></h2>
-                                           <div>
-                                                <img src={tile_note} alt="notes"/>
-                                           </div>
+                                                <h2 className="yh-line"></h2>
+                                                <div>
+                                                        <img src={tile_note} alt="notes"/>
+                                                </div>
+                                           </figure>
                                      </Col>
                                      <Col span={12} >
                                             <div>

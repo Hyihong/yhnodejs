@@ -8,6 +8,8 @@ import './style.less'
 class View extends Component{
     constructor(props){
         super( props );
+        
+
         this.state={
             articleOverview:[]
         }
@@ -16,7 +18,7 @@ class View extends Component{
         // 获取文章概览
          axios({
              method:'GET',
-             url:'/api/article/getTitleOverview',
+             url:'/api/public/article/getTitleOverview',
          }).then( response =>{
             if( response.status === 200 ){
                 if( response.data.code === 0 ){
@@ -80,7 +82,10 @@ class View extends Component{
                             <div className="yh-list-operate">
                                 <span>更新:{ moment(item.lastTime).format('YYYY-MM-DD HH:mm')}</span> 
                                 <span>创建:{ moment(item.createTime).format('YYYY-MM-DD HH:mm')}</span> 
-                                <span className="yh-delete-article-btn" onClick={ ()=>this.delete(item.ID) }>删除</span>
+                                {
+                                    this.props.isPublic ?  null : <span className="yh-delete-article-btn" onClick={ ()=>this.delete(item.ID) }>删除</span>
+                                }
+                               
                             </div>
                        </List.Item>
                     )
@@ -93,4 +98,4 @@ class View extends Component{
 
 }
 
-export default View ;
+export default View;

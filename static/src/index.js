@@ -5,7 +5,7 @@ import { Row, Col,message } from 'antd'
 import { requestInterceptor,responseInterceptor } from './utils/axiosInterceptor'
 import "normalize.css"
 import Home from './pages/public/Home.jsx'
-import Note from './pages/public/Note.jsx'
+import Note from './pages/public/ArticleList.jsx'
 import IntroduceMysite from './pages/public/IntroduceSite.jsx'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
