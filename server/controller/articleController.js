@@ -8,7 +8,7 @@ const { queryData } = require("../../db")
 async function createArticle( ctx,next ){
     const { title, content,type } = ctx.request.body ;
     const id = uuidv1(); //生成文章ID
-    const result = await db_insertCreateInfo( id,title,content,type,new Date().toLocaleString() ) ;
+    const result = await db_insertCreateInfo( id,title,content,type ) ;
     if( result === true){
         ctx.body= success('创建文章成功')
     }else{

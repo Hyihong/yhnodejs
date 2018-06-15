@@ -99,7 +99,10 @@ class EditArticle extends Component {
                     message.error(response.data.message )
                 }else{
                   //验证成功
-                  message.info( response.data.message )
+                  message.info( response.data.message );
+                  setTimeout( ()=>{
+                    this.props.history.push('/admin/article/index')
+                  },1500)
                 }
            }
         })

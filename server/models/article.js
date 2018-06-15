@@ -1,8 +1,9 @@
 const { queryData } = require("../../db") 
 
 //创建文章（数据库插入）
-async function db_insertCreateInfo( id, title,content,type, time ){
+async function db_insertCreateInfo( id, title,content,type ){
     let result;
+    let time = new Date().toLocaleString();
     let sql = `INSERT INTO article
                    (article_id, article_title,article_content,article_author,article_type,create_time,last_eidt_time) 
                 VALUES
@@ -51,6 +52,7 @@ async function db_getArticleDetail(id){
     return result ;
 }
 
+//修改文章
 async function db_modifyArticle(modify){
     let result;
     let sqlParts="";
@@ -63,7 +65,8 @@ async function db_modifyArticle(modify){
             }
         }
     })
-    let sql =  `UPDATE article SET ${sqlParts} WHERE article_id="${modify.id}" `;
+
+    let sql =  `UPDATE article SET last_eidt_time="${new Date().toLocaleString()}",${sqlParts} WHERE article_id="${modify.id}" `;
     try{
         result  =  await queryData(sql)
     }catch(e){
@@ -72,6 +75,7 @@ async function db_modifyArticle(modify){
     return result;
 }
 
+//删除文章
 async function db_deleteArticle(id){
     let result;
     let sql = `delete from article where article_id="${id}"`;

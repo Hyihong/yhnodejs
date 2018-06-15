@@ -62,7 +62,7 @@ class AddArticle extends Component {
                   message.info( response.data.message )
                   setTimeout( ()=>{
                     this.props.history.push('/admin/article/index')
-                  },2000)
+                  },1500)
                 }
            }
         })
