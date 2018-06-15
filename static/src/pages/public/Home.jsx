@@ -36,7 +36,7 @@ class Home extends Component{
     }
     componentDidMount(){
         const _this = this;
-        // 第三方服务获取天气接口(2018.4.13呃，接口失效了...)
+        //第三方服务获取天气接口(2018.4.13呃，接口失效了...)
         // axios.get('http://wthrcdn.etouch.cn/weather_mini?city=厦门')
         // .then(function (response) {
         //     if(response.status === 200){
@@ -49,7 +49,7 @@ class Home extends Component{
         //    console.log(error);
         // });
 
-        // 表单提交方式:在cookies中获取登录错误的反馈信息
+       // 表单提交方式:在cookies中获取登录错误的反馈信息
         //读取cookie
         // if( !!getCookie('loginFailurMessage') ){
         //     const loginErrorMessage = new Buffer(getCookie('loginFailurMessage'), 'base64').toString() ;
@@ -83,18 +83,32 @@ class Home extends Component{
                             <Col span={12} className="yh-left-panel">
                                  <Row gutter={16}>
                                      <Col span={12}>
-                                           <figure>   
-                                           <Link to="/home/note"> <h3>我的笔记</h3></Link>  
-                                                <h2 className="yh-line"></h2>
+                                             <h3>我的笔记</h3> 
+                                            <h2 className="yh-line"></h2>
+                                            <figure> 
                                                 <div>
+                                                    <Link to="/home/note">
                                                         <img src={tile_note} alt="notes"/>
+                                                        <figcaption>
+                                                            <h1>NOTE</h1> 
+                                                            <p>THERE IS MY NOTES. INCLUDING STUDY NOTE AND TINY TALK</p>
+                                                        </figcaption>
+                                                    </Link> 
                                                 </div>
                                            </figure>
                                      </Col>
                                      <Col span={12} >
-                                            <div>
-                                                <img src={tile_daily} alt="diary"/>
-                                            </div>
+                                            <figure> 
+                                                <div>
+                                                    <Link to="/home/note">
+                                                        <img src={tile_daily} alt="diary"/>
+                                                        <figcaption>
+                                                            <h1>ME</h1> 
+                                                            <p>HEY! WHAT I LOOK LIKE</p>
+                                                        </figcaption>
+                                                    </Link> 
+                                                </div>
+                                           </figure>
                                             <h3>关于我</h3>
                                             <h2 className="yh-line"></h2>
                                      </Col>
@@ -105,15 +119,32 @@ class Home extends Component{
                                  <Row style={{marginBottom:"15px"}}>
                                         <h3>图集</h3>
                                         <h2 className="yh-line"></h2>
-                                        <div >
-                                            <img src={tile_atlas} alt="atlas"/>
-                                            
-                                        </div>
+                                        <figure> 
+                                                <div>
+                                                    <Link to="/home/note">
+                                                        <img src={tile_atlas} alt="atlas"/>
+                                                        <figcaption>
+                                                            <h1>GALLERY</h1> 
+                                                            <p>PHOTO EXHIBITION TO SHOW SOME OF THE PICTURE I lIKE</p>
+                                                        </figcaption>
+                                                    </Link> 
+                                                </div>
+                                           </figure>
                                  </Row>
                                  <Row gutter={8}>
                                      <Col span={12}>
                                         <div className="yh-tiles-data">
-                                            
+                                            <figure> 
+                                                    <div className="yh-tiles-data">
+                                                        <Link to="/home/note">
+             
+                                                            <figcaption>
+                                                                <h1>WEBSITE</h1> 
+                                                                <p>INTRODUCE AND RECORD MY WEBSITE</p>
+                                                            </figcaption>
+                                                        </Link> 
+                                                    </div>
+                                            </figure>
                                         </div>
                                         <Link to="/home/introduce/mysite"> <h3>个站介绍</h3></Link> 
                                         <h2 className="yh-line" style={{width:'75px'}}></h2>
