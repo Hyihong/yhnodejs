@@ -26,7 +26,7 @@ async function db_selectArticleOverview(){
                       CONCAT ( SUBSTRING(article_content,1,70),"...") AS overview, 
                       create_time as createTime,
                       last_eidt_time as lastTime 
-                from article`;
+                from article ORDER BY last_eidt_time DESC`;
     try{
          result  =  await queryData(sql)
     }catch(e){
