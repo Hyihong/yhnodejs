@@ -1,9 +1,10 @@
 import React,{Component} from 'react' 
 import axios from 'axios' 
-import {  List,Row,Col,Tag,Modal,Form, Icon, Input, Button, Checkbox,message, Divider  } from 'antd' 
+import {  List,Tag,Modal  } from 'antd' 
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 import './style.less'
-import { getQueryString } from '../../../utils/base.js'
+
 class View extends Component{
     constructor(props){
         super( props );
@@ -19,13 +20,14 @@ class View extends Component{
          }).then( response =>{
             if( response.status === 200 ){
                 if( response.data.code === 0 ){
-                    this.setState({articleOverview: response.data.data})
+                    this.setState({articleOverview: response.data.data});
+               
                 }
             }
          })
-    }
-    componentWillUpdate(nextProps,nextStatus){
-            console.log( nextStatus )
+
+         console.log(moment('2018-06-15T02:39:37.000Z').format('YYYY-MM-DD HH:mm') );
+         
     }
     // 删除文章
     delete =(id)=>{
@@ -75,7 +77,11 @@ class View extends Component{
                                <h3>{item.type === 1 ? <Tag color="purple">笔记</Tag> :<Tag color="cyan">杂谈</Tag>}{item.title }</h3>
                             </Link>
                             <div className="yh-overview-content">{item.overview}</div>
-                            <span>更新时间:{item.lastTime}</span> <span className="yh-delete-article-btn" onClick={ ()=>this.delete(item.ID) }>删除</span>
+                            <div className="yh-list-operate">
+                                <span>更新:{ moment(item.lastTime).format('YYYY-MM-DD HH:mm')}</span> 
+                                <span>创建:{ moment(item.createTime).format('YYYY-MM-DD HH:mm')}</span> 
+                                <span className="yh-delete-article-btn" onClick={ ()=>this.delete(item.ID) }>删除</span>
+                            </div>
                        </List.Item>
                     )
                 }

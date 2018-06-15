@@ -22,7 +22,8 @@ async function db_selectArticleOverview(){
     let sql = `SELECT article_id AS ID,
                       article_title AS title,
                       article_type AS type,
-                      CONCAT ( SUBSTRING(article_content,1,70),"...") AS overview,
+                      CONCAT ( SUBSTRING(article_content,1,70),"...") AS overview, 
+                      create_time as createTime,
                       last_eidt_time as lastTime 
                 from article`;
     try{
@@ -36,7 +37,12 @@ async function db_selectArticleOverview(){
 //根据文章ID获取文章详细信息
 async function db_getArticleDetail(id){
     let result;
-    let sql = `SELECT article_id AS ID,article_title AS title,article_content AS content,article_type AS type from article WHERE article_id="${id}"`;
+    let sql = `SELECT article_id AS ID,
+                      article_title AS title,
+                      article_content AS content,
+                      article_type AS type 
+                from article 
+                      WHERE article_id="${id}"`;
     try{
          result  =  await queryData(sql)
     }catch(e){
