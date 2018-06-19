@@ -83,7 +83,7 @@ class Home extends Component{
                             <Col span={12} className="yh-left-panel">
                                  <Row gutter={16}>
                                      <Col span={12}>
-                                             <h3>我的笔记</h3> 
+                                            <h3>我的笔记</h3>
                                             <h2 className="yh-line"></h2>
                                             <figure> 
                                                 <div>
