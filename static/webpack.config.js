@@ -1,4 +1,5 @@
 const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const config = {
     mode:"development",
@@ -11,24 +12,36 @@ const config = {
       path:path.resolve(__dirname, "dist"),
       filename: "[name].js",
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
+    ],
     module: {
         rules: [
           { 
             test: /\.js|jsx$/, 
             exclude: /node_modules/,
-            use:{
-              //loader:'babel-loader' ,
-              loader: path.resolve(__dirname,'./node_modules/babel-loader') ,
-              options: {  sourceMap: true } 
-            } 
-           
+            use:{ loader: path.resolve(__dirname,'./node_modules/babel-loader') ,options: {  sourceMap: true } } 
           },
           { 
             test: /\.css$/, 
-            //exclude: /node_modules/,
+            include: /node_modules/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              path.resolve(__dirname,'./node_modules/css-loader')
+            ]
+          },
+          { 
+            test: /\.css$/, 
+            exclude: /node_modules/,
             use: [
                 {  loader: path.resolve(__dirname,'./node_modules/style-loader') ,options: {  sourceMap: true }  },
                 {  loader: path.resolve(__dirname,'./node_modules/css-loader'), options: {  sourceMap: true } },
+                 {  loader: path.resolve(__dirname,'./node_modules/postcss-loader') },          
 
             ]
           },
