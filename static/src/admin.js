@@ -8,11 +8,11 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 //视图
-import AdminLayout from './components/admin/share/AdminLayout.jsx'
-import AdminHome from './pages/admin/AdminHome.jsx'
-import AddArticle from './pages/admin/AddArticle.jsx'
-import EditArticle from './pages/admin/EditArticle.jsx'
-import ArticleIndex from './pages/admin/ArticleIndex.jsx'
+import AdminLayout from './components/admin/share/AdminLayout'
+import AdminHome from './pages/admin/AdminHome'
+import AddArticle from './pages/admin/AddArticle'
+import EditArticle from './pages/admin/EditArticle'
+import ArticleIndex from './pages/admin/ArticleIndex'
 
 
 
