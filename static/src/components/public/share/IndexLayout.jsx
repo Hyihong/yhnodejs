@@ -5,7 +5,7 @@ import { view as LoginModal } from "../login"
 
 import "./style.less"
 
-class Header extends Component{
+class IndexLayout extends Component{
     constructor(props){
         super(props)
         
@@ -36,7 +36,7 @@ class Header extends Component{
                {/* 登录框 */}
                <LoginModal visible= { this.state.loginModalVisible } onCancel={  this.showLoginModal } ></LoginModal>
                {/* 页面头部 */}
-               <div className="yh-nav">
+               <div className="yh-index-nav">
                     {
                         this.props.authed ? 
                         <div>
@@ -54,6 +54,10 @@ class Header extends Component{
             
                      
                </div>
+               <div className="yh-index-containter">
+                    { this.props.children }
+               </div>
+              
            </div>
            
         )  
@@ -63,4 +67,4 @@ class Header extends Component{
 
 
 
-export default Header ;
+export default IndexLayout ;

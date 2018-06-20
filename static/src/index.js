@@ -6,10 +6,11 @@ import { requestInterceptor,responseInterceptor } from './utils/axiosInterceptor
 import "normalize.css"
 import Home from './pages/public/Home.jsx'
 import Note from './pages/public/ArticleList.jsx'
+import ArticleDetail from './pages/public/ArticleDetail.jsx'
 import IntroduceMysite from './pages/public/IntroduceSite.jsx'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
-import Header from './components/public/share/Header.jsx'
+import IndexLayout from './components/public/share/IndexLayout.jsx'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 const appContainer = document.getElementById('root');
 
@@ -48,11 +49,13 @@ async function renderIndex(){
          //渲染首页
         ReactDOM.render(
           <Router>
-              <div >
-                  <Header authed={ isAuth } ></Header>
-                  <Route exact path="/home" component={ (props)=> Auth( Home,props) } />
-                  <Route exact path="/home/note" component={Note} />
-                  <Route exact path="/home/introduce/mysite" component={IntroduceMysite} />
+              <div>
+                  <IndexLayout authed={ isAuth } >
+                      <Route exact path="/home" component={ (props)=> Auth( Home,props) } />
+                      <Route exact path="/home/article/list" component={Note} />
+                      <Route exact path="/home/article/detail" component={ArticleDetail} />
+                      <Route exact path="/home/introduce/mysite" component={IntroduceMysite} />
+                  </IndexLayout>
               </div>
           </Router>,
         appContainer
