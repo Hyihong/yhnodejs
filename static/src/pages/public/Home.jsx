@@ -100,8 +100,8 @@ class Home extends Component{
                                      <Col span={12} >
                                             <figure> 
                                                 <div>
-                                                    <Link to="/home/article">
-                                                        <img src={tile_daily} alt="diary"/>
+                                                    <Link to="/home/aboutme">
+                                                        <img src={tile_daily} alt="aboutme"/>
                                                         <figcaption>
                                                             <h1>ME</h1> 
                                                             <p>HEY! WHAT I LOOK LIKE</p>
@@ -136,7 +136,7 @@ class Home extends Component{
                                         <div className="yh-tiles-data">
                                             <figure> 
                                                     <div className="yh-tiles-data">
-                                                        <Link to="/home/note">
+                                                        <Link to="/home/introduce/mysite">
              
                                                             <figcaption>
                                                                 <h1>WEBSITE</h1> 

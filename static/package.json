@@ -34,6 +34,7 @@
     "antd": "^3.6.2",
     "axios": "^0.18.0",
     "font-awesome": "^4.7.0",
+    "fullpage-react": "^3.0.33",
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "react": "^16.2.0",

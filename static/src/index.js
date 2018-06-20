@@ -4,13 +4,14 @@ import { BrowserRouter as Router,Route } from "react-router-dom";
 import { Row, Col,message } from 'antd'
 import { requestInterceptor,responseInterceptor } from './utils/axiosInterceptor'
 import "normalize.css"
-import Home from './pages/public/Home.jsx'
-import Note from './pages/public/ArticleList.jsx'
-import ArticleDetail from './pages/public/ArticleDetail.jsx'
-import IntroduceMysite from './pages/public/IntroduceSite.jsx'
+import Home from './pages/public/Home'
+import Note from './pages/public/ArticleList'
+import ArticleDetail from './pages/public/ArticleDetail'
+import IntroduceMysite from './pages/public/IntroduceSite'
+import Aboutme from './pages/public/Aboutme'
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
-import IndexLayout from './components/public/share/IndexLayout.jsx'
+import IndexLayout from './components/public/share/IndexLayout'
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 const appContainer = document.getElementById('root');
 
@@ -55,6 +56,7 @@ async function renderIndex(){
                       <Route exact path="/home/article/list" component={Note} />
                       <Route exact path="/home/article/detail" component={ArticleDetail} />
                       <Route exact path="/home/introduce/mysite" component={IntroduceMysite} />
+                      <Route exact path="/home/aboutme" component={Aboutme} />
                   </IndexLayout>
               </div>
           </Router>,

@@ -1,5 +1,5 @@
 import React,{Component} from 'react' 
-import ArticleList from '../admin/articleIndex.jsx'
+import ArticleList from '../admin/ArticleIndex.jsx'
 import {  Row,Col,Calendar  } from 'antd' 
 
 

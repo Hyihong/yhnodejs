@@ -3,6 +3,7 @@ import {  Row,Col,Radio,Modal,Form, Icon, Input, Button, Checkbox,message  } fro
 import { view as ArticleTitleList } from '../../components/admin/articleList' //标题概览
 import { Link,withRouter } from "react-router-dom";
 import './style/articleIndex.less'
+
 class ArticleIndex extends Component {
     componentWillMount(){
         this.isPublic = !!this.props.location.pathname.match("/home"); 
