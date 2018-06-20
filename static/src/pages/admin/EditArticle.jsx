@@ -1,6 +1,7 @@
 /* 
    des    :采用 simplemde 作为编辑器组件 
    URL：   https://github.com/sparksuite/simplemde-markdown-editor
+   note:   这个页面为前台与后台共享的页面，前台作为展示页面，后台作为编辑页面。
 */
 import React,{Component} from 'react' 
 import axios from 'axios' 
@@ -22,6 +23,7 @@ class EditArticle extends Component {
             radioValue:null,
             title:''
         }
+        this.isPublic = !!this.props.location.pathname.match("/home"); 
     }
     componentDidMount(){
         const that = this;

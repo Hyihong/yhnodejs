@@ -87,8 +87,8 @@ class Home extends Component{
                                             <h2 className="yh-line"></h2>
                                             <figure> 
                                                 <div>
-                                                    <Link to="/home/note">
-                                                        <img src={tile_note} alt="notes"/>
+                                                    <Link to="/home/article/list">
+                                                        <img src={tile_note} alt="article"/>
                                                         <figcaption>
                                                             <h1>NOTE</h1> 
                                                             <p>THERE IS MY NOTES. INCLUDING STUDY NOTE AND TINY TALK</p>
@@ -100,7 +100,7 @@ class Home extends Component{
                                      <Col span={12} >
                                             <figure> 
                                                 <div>
-                                                    <Link to="/home/note">
+                                                    <Link to="/home/article">
                                                         <img src={tile_daily} alt="diary"/>
                                                         <figcaption>
                                                             <h1>ME</h1> 

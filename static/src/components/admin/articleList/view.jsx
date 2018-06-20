@@ -8,8 +8,6 @@ import './style.less'
 class View extends Component{
     constructor(props){
         super( props );
-        
-
         this.state={
             articleOverview:[]
         }
@@ -28,7 +26,7 @@ class View extends Component{
             }
          })
 
-         console.log(moment('2018-06-15T02:39:37.000Z').format('YYYY-MM-DD HH:mm') );
+        //console.log(moment('2018-06-15T02:39:37.000Z').format('YYYY-MM-DD HH:mm') );
          
     }
     // 删除文章
@@ -75,7 +73,10 @@ class View extends Component{
                 renderItem={
                     item =>(
                         <List.Item key={ item.ID }>
-                            <Link to={{pathname:`/admin/article/edit`,search: `?id=${item.ID}`, }} >
+                            {
+                                
+                            }
+                            <Link to={{pathname:this.props.isPublic ? '/home/article/detail' :'/admin/article/edit',search: `?id=${item.ID}`, }} >
                                <h3>{item.type === 1 ? <Tag color="purple">笔记</Tag> :<Tag color="cyan">杂谈</Tag>}{item.title }</h3>
                             </Link>
                             <div className="yh-overview-content">{item.overview}</div>

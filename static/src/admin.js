@@ -7,7 +7,6 @@ import "normalize.css"
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import axios from 'axios' 
 import '../node_modules/font-awesome/css/font-awesome.min.css'
-
 //视图
 import AdminLayout from './components/admin/share/AdminLayout.jsx'
 import AdminHome from './pages/admin/AdminHome.jsx'
