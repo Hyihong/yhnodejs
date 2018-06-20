@@ -71,6 +71,9 @@ const config = {
           
         ]
       },
+      resolve:{
+        extensions: ['.js', '.json','.jsx'],
+      },
       devtool:"source-map",
      
 };
