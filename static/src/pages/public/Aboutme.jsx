@@ -9,20 +9,33 @@ import { Fullpage, Slide, HorizontalSlider } from '../../components/public/fullp
 const fullPageOptions = {
     // for mouse/wheel events
     // represents the level of force required to generate a slide change on non-mobile, 10 is default
-    scrollSensitivity: 1,
+    scrollSensitivity: 0,
     // for touchStart/touchEnd/mobile scrolling
     // represents the level of force required to generate a slide change on mobile, 10 is default
     touchSensitivity: 5,
     scrollSpeed: 400,
     hideScrollBars: true,
     enableArrowKeys: true,
-    slides:[
-        <Slide> Slide 1 </Slide>,
-        <Slide> Slide 2 </Slide>,
-        <Slide> Slide 3 </Slide>
-      ]
+    onSlideChangeEnd:()=>{
+        console.log("结束")
+    }
   };
    
+fullPageOptions.slides = [
+    <Slide style={{background:'yellow'}}>
+        基本信息介绍
+    </Slide>,
+    <Slide>
+        技能介绍
+    </Slide>,
+    <Slide style={{background:'yellow'}}> 
+        工作经验   
+    </Slide>,
+    <Slide style={{background:'yellow'}}> 
+        项目经验  
+    </Slide>
+]
+
 
 class About extends Component{
     constructor(props){
@@ -34,7 +47,7 @@ class About extends Component{
     render(){
         return(
             <div>
-                <Fullpage {...fullPageOptions} />
+                <Fullpage {...fullPageOptions} ></Fullpage>   
             </div>
         )
     }
