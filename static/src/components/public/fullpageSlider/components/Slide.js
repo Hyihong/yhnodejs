@@ -21,7 +21,22 @@ const Slide = ({ id, render, className, width, height, horizontal, horizontalSli
     'data-slide': horizontal ? HorizontalSlide : VerticalSlide,
     'data-horizontal-slider': horizontalSliderName || null
   };
+  
+  console.log( children )
+  // function analysisRenderContent( c ){
+  //      if( c.type && c.type=== 'function' ){
+  //         if(c.type.name !=='TweenOne'){
+  //           analysisRenderContent(c.props.children)
+  //         }
+  //      }else{
+  //         return c ;
+  //      }
+  // }
 
+  //let renderContont = analysisRenderContent(children);
+
+
+ 
   return (
     <div className={slideClassName} id={id} {...attrs} style={styles}>
         { render ? children : null}

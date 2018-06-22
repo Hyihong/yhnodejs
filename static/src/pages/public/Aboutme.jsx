@@ -13,7 +13,7 @@ import './style/aboutme.less'
 const fullPageOptions = {
     scrollSensitivity: 0,
     touchSensitivity: 5,
-    scrollSpeed: 400,
+    scrollSpeed: 300,
     hideScrollBars: true,
     onSlideChangeEnd:(compName, props, state, newState)=>{
   
@@ -31,8 +31,8 @@ fullPageOptions.slides = [
              <Row type="flex" justify="center">
                  <img className="yh-img-head"src={head} alt="头像"/>
              </Row>
-             <h1 className="yh-sayhello">Hey! I'm Chen Yihong</h1>
-             <TweenOne animation={{ type:'from',x:500 }}>
+             <TweenOne animation={{ type:'from',y:500,opacity:0,delay:400}}><h1 className="yh-sayhello">Hey! I'm Chen Yihong</h1></TweenOne>
+             <TweenOne animation={{ type:'from',y:-100,opacity:0,delay:300 }}>
                 <div className="yh-base-info">
                     <Row type="flex" justify="center">
                         <Col span={12}>
@@ -62,12 +62,45 @@ fullPageOptions.slides = [
         </div>
     </Slide>,
     <Slide style={{background:'#2378b4'}}>
-        技能介绍 <TweenOne animation={{ type:'from',x:500 }}> <h2>技能介绍</h2></TweenOne>
+       <div className="yh-aboutme-panel panel-2">
+            <TweenOne animation={{ type:'from',x:-500,delay:300 }}>
+                <Row>
+                    <Col span={5}><div className="yh-skill-classify">Base-Skill</div></Col>
+                    <Col span={19}>
+                          <ul>
+                              <li>文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                          </ul>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={5}><div className="yh-skill-classify">HTML/CSS/JS</div></Col>
+                    <Col span={19}>
+                          <ul>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                          </ul>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={5}><div className="yh-skill-classify">Server-Side</div></Col>
+                    <Col span={19}>
+                          <ul>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                          </ul>
+                    </Col>
+                </Row>
+            </TweenOne>
+        </div>
     </Slide>,
-    <Slide style={{background:'yellow'}}> 
+    <Slide > 
         工作经验   
     </Slide>,
-    <Slide> 
+    <Slide style={{background:'#2378b4'}}> 
         项目经验  
     </Slide>
 ]

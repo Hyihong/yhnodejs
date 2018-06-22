@@ -212,9 +212,7 @@ class Fullpage extends React.Component {
       return ss.listen();
     }
 
-    //chenyihong新增：添加动画处理函数
-    console.log("开始处理动画")
-
+    
     // at this point we are dedicating
     const dir = INTENT_MAP[direction];
     if (direction === 'VERTICAL') {
@@ -240,7 +238,7 @@ class Fullpage extends React.Component {
       lastActive: activeSlide
     };
 
-    this.setState({ scrollPending: true }, () => {
+    this.setState({ scrollPending: true,...newState }, () => {
        this.handleScroll(this.verticalRoot, 'scrollTop', to, newState, this.name);
     });
   }
@@ -258,14 +256,17 @@ class Fullpage extends React.Component {
 
     scrollTo(node, winProp, to, this.scrollSpeed, () => {
       newState.scrollPending = false;
+
       this.setState(newState, () => {
         cb();
+        //动画结束后才改变当前索引，为了动画能在滚动开始时就执行，及onScrollAction时就去改变sliderActive状态
         this.onSlideChangeEnd(compName, this.props, this.state, newState[compName] || newState);
         setTimeout(() => {
           ss.flush();
           ss.listen();
         }, TIMEOUT);
       });
+
     });
   }
  
@@ -326,7 +327,7 @@ class Fullpage extends React.Component {
  
                   const sp = sl.props || {};
                   const children = sp.children;
-                  return <Slide render={ i === activeSlide } className={sp.className || ''} id={sp.id} width={width} height={height} key={i} {...sp}>
+                  return <Slide render={ i === activeSlide  } className={sp.className || ''} id={sp.id} width={width} height={height} key={i} {...sp}>
                       {children}
                     </Slide>;
                 })}
