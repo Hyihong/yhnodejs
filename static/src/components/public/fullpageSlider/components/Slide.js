@@ -4,9 +4,6 @@ const HorizontalSlide = 'HorizontalSlide';
 const VerticalSlide = 'VerticalSlide';
 
 const Slide = ({ id, render, className, width, height, horizontal, horizontalSliderName, children, style }) => {
-  if (!render) {
-    return null;
-  }
 
   const slideStyle = style || {};
 
@@ -27,7 +24,7 @@ const Slide = ({ id, render, className, width, height, horizontal, horizontalSli
 
   return (
     <div className={slideClassName} id={id} {...attrs} style={styles}>
-      {children}
+        { render ? children : null}
     </div>
   );
 }

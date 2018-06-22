@@ -4,6 +4,7 @@
 import React,{Component} from 'react' 
 import { Row,Col } from 'antd' 
 import './style/introduceSite.less'
+import TweenOne from 'rc-tween-one';
 import { Fullpage, Slide } from '../../components/public/fullpageSlider';
 import banner  from '../../assets/images/about_banner.png'
 import head  from '../../assets/images/head.jpg'
@@ -14,10 +15,13 @@ const fullPageOptions = {
     touchSensitivity: 5,
     scrollSpeed: 400,
     hideScrollBars: true,
-    enableArrowKeys: true,
-    onSlideChangeEnd:()=>{
-        console.log("结束")
-    }
+    onSlideChangeEnd:(compName, props, state, newState)=>{
+  
+    },
+    onSlideChangeStart:(compName, props, state, newState)=>{
+
+    },
+    
   };
    
 fullPageOptions.slides = [
@@ -27,35 +31,38 @@ fullPageOptions.slides = [
              <Row type="flex" justify="center">
                  <img className="yh-img-head"src={head} alt="头像"/>
              </Row>
-             <div className="yh-base-info">
-                <Row type="flex" justify="center">
-                    <Col span={12}>
-                       <ul className="yh-base-info-left">
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                       </ul>
-                    </Col>
-                    <Col span={12}>
-                         <ul className="yh-base-info-right">
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
-                       </ul>
-                       </Col>
-                </Row>
-             </div>
-             
+             <h1 className="yh-sayhello">Hey! I'm Chen Yihong</h1>
+             <TweenOne animation={{ type:'from',x:500 }}>
+                <div className="yh-base-info">
+                    <Row type="flex" justify="center">
+                        <Col span={12}>
+                            <ul className="yh-base-info-left">
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            </ul>
+                        
+                        </Col>
+                        <Col span={12}>
+                            <ul className="yh-base-info-right">
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                            <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                        </ul>
+                        </Col>
+                    </Row>
+                </div>
+             </TweenOne>
         </div>
     </Slide>,
     <Slide style={{background:'#2378b4'}}>
-        技能介绍
+        技能介绍 <TweenOne animation={{ type:'from',x:500 }}> <h2>技能介绍</h2></TweenOne>
     </Slide>,
     <Slide style={{background:'yellow'}}> 
         工作经验   

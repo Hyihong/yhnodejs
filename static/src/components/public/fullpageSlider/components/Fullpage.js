@@ -212,6 +212,9 @@ class Fullpage extends React.Component {
       return ss.listen();
     }
 
+    //chenyihong新增：添加动画处理函数
+    console.log("开始处理动画")
+
     // at this point we are dedicating
     const dir = INTENT_MAP[direction];
     if (direction === 'VERTICAL') {
@@ -293,24 +296,22 @@ class Fullpage extends React.Component {
   render() {
     const p = this.props;
     const { window, activeSlide } = this.state;
-
     const children = p.children || null;
 
     if (!window) {
       return children;
     }
 
-    const elements = p.slides.reduce((result, sl) => {
+    const elements = p.slides.reduce((result, sl ) => {
       if (!sl) {
         return result;
       }
       if (typeof sl.type == 'function') {
-        result.push(sl);
+          result.push(sl);
       } 
 
       return result;
-    }, []);
-     
+    }, []);     
   
     // TODO: sub other for children
     return (
@@ -322,9 +323,10 @@ class Fullpage extends React.Component {
             return (
               <div ref={node => (this.node = node)} className="Fullpage">
                 {elements.map((sl, i) => {
+ 
                   const sp = sl.props || {};
                   const children = sp.children;
-                  return <Slide render={true} className={sp.className || ''} id={sp.id} width={width} height={height} key={i} {...sp}>
+                  return <Slide render={ i === activeSlide } className={sp.className || ''} id={sp.id} width={width} height={height} key={i} {...sp}>
                       {children}
                     </Slide>;
                 })}
