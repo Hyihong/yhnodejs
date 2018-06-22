@@ -6,9 +6,7 @@ import { detectBrowser, constants, scrollTo, renderUtils, INTENT_MAP, composedPa
 import Slide from './Slide';
 
 const { noOp } = constants;
-const { KEY_IDX } = renderUtils;
 
-let _fp = {};
 let global = {};
 
 const TIMEOUT = 200;
@@ -161,41 +159,13 @@ class Fullpage extends React.Component {
       window: global.window,
       document: global.document
     }, () => {
-      this.lockScroll();
+      this.initScroll();
     });
   }
 
-  componentWillUnmount() {
-    const ss = this.ss || ssStub();
-    ss.killAll();
-    this.ss = null;
 
-    const { window } = this.state;
-
-    if (this.props.enableArrowKeys) {
-      window.removeEventListener('keydown', this.checkKey);
-    }
-  }
-
-
-  hideScrollBars() {
-    const { hideScrollBars } = this.props;
-    if (!hideScrollBars) {
-      return;
-    }
-    const { document } = global;
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-  }
-
-  lockScroll =()=> {
-    
-    const {checkKey } = this;
+  initScroll =()=> {
     const {  scrollSensitivity, touchSensitivity } = this.props;
-
-    if (this.props.enableArrowKeys) {
-      window.addEventListener('keydown', checkKey.bind(this));
-    }
 
     const ss = new ScrollSwipe({
       target: this.node,
@@ -210,46 +180,48 @@ class Fullpage extends React.Component {
     this.isLocked = true;
   }
 
-  onScrollAction =({direction, intent, startEvent}) =>{
-    const s = this.state; //scrollswipe
+
+  componentWillUnmount() {
+    //删除实例
+    const ss = this.ss || ssStub();
+    ss.killAll();
+    this.ss = null; 
+    this.showScrollBars();
+    
+    
+  }
+
+
+  hideScrollBars() {
+    const { document } = global;
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }
+
+  showScrollBars() {
+    const { document } = global;
+    document.documentElement.style.overflow = 'auto';
+    document.body.style.overflow = 'auto';
+  }
+
+  onScrollAction =({direction, intent, startEvent }) =>{
     const { ss = ssStub() } = this;
-    if (s.scrollPending) {
+
+    if (this.state.scrollPending) {
       ss.flush();
       return ss.listen();
     }
-
-    const dir = INTENT_MAP[direction];
 
     // at this point we are dedicating
+    const dir = INTENT_MAP[direction];
     if (direction === 'VERTICAL') {
       return this.onVerticalScroll(dir[intent], startEvent);
-    }
-
-    let path = startEvent.path || (startEvent.composedPath && startEvent.composedPath());
-
-    if (!path) {
-      const polyFillPath = composedPath(startEvent.target);
-      path = polyFillPath;
-    }
-
-    const isHorizontal = path.find((p) => {
-      if (!p.dataset) {
-        return false;
-      }
-
-      return p.dataset.slide === 'HorizontalSlider';
-    });
-
-    if (!isHorizontal) {
-      ss.flush();
-      return ss.listen();
     }
 
   }
 
   onVerticalScroll=(intent)=> {
-    const s = this.state;
-    const { window, activeSlide } = s;
+    const { window, activeSlide } = this.state;
     const { slides } = this.props;
 
     const next = intent === 'DOWN' ? activeSlide + 1 : activeSlide - 1;
@@ -266,13 +238,14 @@ class Fullpage extends React.Component {
     };
 
     this.setState({ scrollPending: true }, () => {
-      this.handleScroll(this.verticalRoot, 'scrollTop', to, newState, this.name);
+       this.handleScroll(this.verticalRoot, 'scrollTop', to, newState, this.name);
     });
   }
  
 
   handleScroll = (node, winProp, to, newState, compName, cb = noOp)=> {
     const ss = this.ss || ssStub();
+
     ss.flush();
     const cancellable = this.onSlideChangeStart(compName, this.props, this.state, newState[compName] || newState);
 
@@ -292,33 +265,7 @@ class Fullpage extends React.Component {
       });
     });
   }
-
-  
-  checkKey=(e)=> {
-    const direction = KEY_IDX[e.keyCode];
-    if (!direction) {
-      return;
-    }
-
-    const intent = (direction === 'UP' || direction === 'LEFT') ? -1 : 1;
-    const context = (direction === 'UP' || direction === 'DOWN') ? 'VERTICAL' : 'HORIZONTAL';
-
-    if (context === 'VERTICAL') {
-      this.changeFullpageSlide(this.state.activeSlide + intent);
-      return;
-    }
-
-    const horizontalName = this.state.horizontalMap[this.state.activeSlide];
-    if (!horizontalName) {
-      return;
-    }
-
-    const { activeSlide } = this.state[horizontalName];
-    Fullpage.changeHorizontalSlide(horizontalName, activeSlide + intent);
-  }
-
  
-
   changeFullpageSlide =(idx)=>{
 
     const { props, state, name, verticalRoot } = this;
@@ -345,7 +292,7 @@ class Fullpage extends React.Component {
 
   render() {
     const p = this.props;
-    const { window, document, activeSlide } = this.state;
+    const { window, activeSlide } = this.state;
 
     const children = p.children || null;
 

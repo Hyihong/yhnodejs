@@ -4,14 +4,13 @@
 import React,{Component} from 'react' 
 import { Row,Col } from 'antd' 
 import './style/introduceSite.less'
-import { Fullpage, Slide, HorizontalSlider } from '../../components/public/fullpageSlider';
+import { Fullpage, Slide } from '../../components/public/fullpageSlider';
+import banner  from '../../assets/images/about_banner.png'
+import head  from '../../assets/images/head.jpg'
+import './style/aboutme.less'
 
 const fullPageOptions = {
-    // for mouse/wheel events
-    // represents the level of force required to generate a slide change on non-mobile, 10 is default
     scrollSensitivity: 0,
-    // for touchStart/touchEnd/mobile scrolling
-    // represents the level of force required to generate a slide change on mobile, 10 is default
     touchSensitivity: 5,
     scrollSpeed: 400,
     hideScrollBars: true,
@@ -22,16 +21,46 @@ const fullPageOptions = {
   };
    
 fullPageOptions.slides = [
-    <Slide style={{background:'yellow'}}>
-        基本信息介绍
+    <Slide >
+        <div className="yh-aboutme-panel panel-1">
+             <img className="yh-img-banner" src={banner} alt="banner"/>}
+             <Row type="flex" justify="center">
+                 <img className="yh-img-head"src={head} alt="头像"/>
+             </Row>
+             <div className="yh-base-info">
+                <Row type="flex" justify="center">
+                    <Col span={12}>
+                       <ul className="yh-base-info-left">
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                       </ul>
+                    </Col>
+                    <Col span={12}>
+                         <ul className="yh-base-info-right">
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                           <li><b>XXXX</b>:<span>XXXXXXXX</span></li>
+                       </ul>
+                       </Col>
+                </Row>
+             </div>
+             
+        </div>
     </Slide>,
-    <Slide>
+    <Slide style={{background:'#2378b4'}}>
         技能介绍
     </Slide>,
     <Slide style={{background:'yellow'}}> 
         工作经验   
     </Slide>,
-    <Slide style={{background:'yellow'}}> 
+    <Slide> 
         项目经验  
     </Slide>
 ]
