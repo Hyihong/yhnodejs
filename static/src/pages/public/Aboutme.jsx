@@ -61,47 +61,102 @@ fullPageOptions.slides = [
              </TweenOne>
         </div>
     </Slide>,
-    <Slide style={{background:'#2378b4'}}>
+    <Slide className="yh-slider-2" >
        <div className="yh-aboutme-panel panel-2">
+           <div className="yh-panel-title">
+                <i className="fa fa-pencil-square fa-4x"></i>
+                <h1>MY SKILLS</h1>
+           </div>
             <TweenOne animation={{ type:'from',x:-500,delay:300 }}>
-                <Row>
-                    <Col span={5}><div className="yh-skill-classify">Base-Skill</div></Col>
-                    <Col span={19}>
+                <Row type="flex">
+                    <Col span={6}><div className="yh-skill-classify">Base-Skill</div></Col>
+                    <Col span={18}>
                           <ul>
-                              <li>文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>1、文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>2、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>3、文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>4、文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>5、文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
                           </ul>
                     </Col>
                 </Row>
-                <Row>
-                    <Col span={5}><div className="yh-skill-classify">HTML/CSS/JS</div></Col>
-                    <Col span={19}>
+                <Row type="flex">
+                    <Col span={6}><div className="yh-skill-classify">HTML/CSS/JS</div></Col>
+                    <Col span={18}>
                           <ul>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>1、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>2、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>3、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>4、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>5、文字文字文字文字文字文字文字文字文字文字文字</li>
                           </ul>
                     </Col>
                 </Row>
-                <Row>
-                    <Col span={5}><div className="yh-skill-classify">Server-Side</div></Col>
-                    <Col span={19}>
+                <Row type="flex">
+                    <Col span={6}><div className="yh-skill-classify">Server-Side</div></Col>
+                    <Col span={18}>
                           <ul>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
-                              <li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>
+                              <li>1、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>2、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>3、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>4、文字文字文字文字文字文字文字文字文字文字文字</li>
+                              <li>5、文字文字文字文字文字文字文字文字文字文字文字</li>
                           </ul>
                     </Col>
                 </Row>
             </TweenOne>
         </div>
     </Slide>,
-    <Slide > 
-        工作经验   
+    <Slide className="yh-slider-3"> 
+       <div className="yh-aboutme-panel panel-3">
+            <div className="yh-panel-title">
+                <i class="fa fa-calendar fa-4x"></i>
+                <h1>WORK {'experience'.toLocaleUpperCase()}</h1>
+            </div>
+            <TweenOne animation={{ type:'from',y:-500,delay:300 }}>
+            <Row>
+				<Col span={24}>
+                <ul class="yh-timeline">
+						<li class="yh-timeline-heading">
+							<div>start</div>
+						</li>
+						<li class="yh-timeline-unverted">
+							<div class="yh-timeline-badge"><i className="fa fa-flag-checkered"></i></div>
+							<div class="yh-timeline-panel">
+								<div class="timeline-heading">
+									<h3 class="timeline-title">Senior Devr</h3>
+									<span class="company">Company Name - 2016 - Current</span>
+								</div>
+								<div class="timeline-body">
+									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted ">
+							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h3 class="timeline-title">Junior Developer</h3>
+									<span class="company">Company Name - 2013 - 2015</span>
+								</div>
+								<div class="timeline-body">
+									<p>Far far away, behind the word mountains, they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+								</div>
+							</div>
+						</li>
+			    	</ul>
+				</Col>
+			</Row>
+            </TweenOne>
+        </div>  
     </Slide>,
-    <Slide style={{background:'#2378b4'}}> 
-        项目经验  
+    <Slide className="yh-slider-4"> 
+         <div className="yh-aboutme-panel panel-4">
+            <div className="yh-panel-title">
+                <i class="fa fa-braille fa-4x"></i>
+                <h1>{'progress'.toLocaleUpperCase()}</h1>
+            </div>
+        </div>  
     </Slide>
 ]
 
