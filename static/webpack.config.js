@@ -28,31 +28,31 @@ const config = {
             use:{ loader: path.resolve(__dirname,'./node_modules/babel-loader') ,options: {  sourceMap: true } } 
           },
           { 
-            test: /\.css$/, 
+            test: /\.css$/, //如果是在modules中引入的CSS，则直接提取
             include: /node_modules/,
             use: [
               MiniCssExtractPlugin.loader,
               path.resolve(__dirname,'./node_modules/css-loader')
             ]
           },
-          { 
-            test: /\.css$/, 
-            exclude: /node_modules/,
-            use: [
-                {  loader: path.resolve(__dirname,'./node_modules/style-loader') ,options: {  sourceMap: true }  },
-                {  loader: path.resolve(__dirname,'./node_modules/css-loader'), options: {  sourceMap: true } },
-                 {  loader: path.resolve(__dirname,'./node_modules/postcss-loader') },          
-
-            ]
-          },
+          // { 
+          //   test: /\.less$/, 
+          //   exclude: /node_modules/,
+          //   use: [
+          //       {  loader: path.resolve(__dirname,'./node_modules/style-loader') ,options: {  sourceMap: true }  },
+          //       {  loader: path.resolve(__dirname,'./node_modules/css-loader'), options: {  sourceMap: true } },  
+          //       // {  loader: path.resolve(__dirname,'./node_modules/postcss-loader') },      
+          //   ]
+          // },
           { 
             test: /\.less$/, 
             use: [
                 {  loader: path.resolve(__dirname,'./node_modules/style-loader') , options: {  sourceMap: true }},
-                {  loader: path.resolve(__dirname,'./node_modules/css-loader') , options: {  sourceMap: true }  },
+                {  loader: path.resolve(__dirname,'./node_modules/css-loader'),options: {  sourceMap: true }  },  
+                {  loader: path.resolve(__dirname,'./node_modules/postcss-loader')},
                 {  
                     loader: path.resolve(__dirname,'./node_modules/less-loader'),
-                    options: { javascriptEnabled: true, sourceMap: true } 
+                    options: { javascriptEnabled: true, sourceMap: false } 
                 }
             ]
           },{
