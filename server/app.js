@@ -13,7 +13,8 @@ const jwt = require('koa-jwt');
 const config = require('../config/serverConfig.js')
 const router = require('./routes') ;
 
-const middleware = require('koa-webpack');
+const koaWebpack = require('koa-webpack')
+
 const { compilerInstance } = require('./compiler');
 
 //custom middleware
@@ -45,29 +46,33 @@ app
 
 if( isDev ){
     app
-      //token验证
-      .use( auth() )        
-      //不需要授权的页面有：/home路由下的：游客
-      //                  /api/public 公共方法
-      //                  /api/login  登录
-      //                  /js|png|css 这些是在开发模式下的资源
-      //                  /待加入 ： 在生产模式下，资源也是不需要授权的           
-      .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/favicon.ico",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css|woff|woff2|ttf)/,/sourcemap$/ ] }))
-      .use(router.routes())
-      .use(router.allowedMethods())
-      .use(middleware({
-           compiler:compilerInstance,
-           dev:{
-              publicPath:"/",
-              logLevel: "error" //只在发生错误时才在控制台输出
-           },
-           hot:true
-        })
-      )
+    //token验证
+    .use( auth() )        
+    //不需要授权的页面有：/home路由下的：游客
+    //                  /api/public 公共方法
+    //                  /api/login  登录
+    //                  /js|png|css 这些是在开发模式下的资源
+    //                  /待加入 ： 在生产模式下，资源也是不需要授权的           
+    .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/favicon.ico",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css|woff|woff2|ttf)/,/sourcemap$/ ] }))
+    .use(router.routes())
+    .use(router.allowedMethods())
+    
+    koaWebpack({
+       compiler:compilerInstance,
+       devMiddleware:{
+        logLevel:'info',
+       },
+       hotClient:{
+        hmr:true
+       }
+    }).then( middleware =>{
+      app.use(middleware)
+    }).catch( err => console.log(err))
+    
 }else{
     app
     .use( auth() )     
-    .use(jwt({ secret: 'chenyihong'}).unless({  path: [/\/static\/dist/] }))
+    .use(jwt({ secret: config.tokenSecret}).unless({  path: ["/favicon.ico",/\/home\/*/,/\/admin\/*/,/^\/api\/public\/*/,/\/error/,/\.*(js|png|jpg|css|woff|woff2|ttf)/,/sourcemap$/ ] }))
     .use(require('koa-static')(  path.resolve( __dirname,'../static/dist')  ))
     .use(router.routes())
     .use(router.allowedMethods())
