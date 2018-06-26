@@ -2,7 +2,7 @@
    des:该页面为个人简介页
 */
 import React,{Component} from 'react' 
-import { Row,Col } from 'antd' 
+import { Row,Col,Card } from 'antd' 
 import './style/introduceSite.less'
 import TweenOne from 'rc-tween-one';
 import { Fullpage, Slide } from '../../components/public/fullpageSlider';
@@ -69,7 +69,7 @@ fullPageOptions.slides = [
            </div>
             <TweenOne animation={{ type:'from',x:-500,delay:300 }}>
                 <Row type="flex">
-                    <Col span={6}><div className="yh-skill-classify">Base-Skill</div></Col>
+                    <Col span={6}><div className="yh-skill-classNameify">Base-Skill</div></Col>
                     <Col span={18}>
                           <ul>
                               <li>1、文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</li>
@@ -81,7 +81,7 @@ fullPageOptions.slides = [
                     </Col>
                 </Row>
                 <Row type="flex">
-                    <Col span={6}><div className="yh-skill-classify">HTML/CSS/JS</div></Col>
+                    <Col span={6}><div className="yh-skill-classNameify">HTML/CSS/JS</div></Col>
                     <Col span={18}>
                           <ul>
                               <li>1、文字文字文字文字文字文字文字文字文字文字文字</li>
@@ -93,7 +93,7 @@ fullPageOptions.slides = [
                     </Col>
                 </Row>
                 <Row type="flex">
-                    <Col span={6}><div className="yh-skill-classify">Server-Side</div></Col>
+                    <Col span={6}><div className="yh-skill-classNameify">Server-Side</div></Col>
                     <Col span={18}>
                           <ul>
                               <li>1、文字文字文字文字文字文字文字文字文字文字文字</li>
@@ -110,37 +110,49 @@ fullPageOptions.slides = [
     <Slide className="yh-slider-3"> 
        <div className="yh-aboutme-panel panel-3">
             <div className="yh-panel-title">
-                <i class="fa fa-calendar fa-4x"></i>
+                <i className="fa fa-calendar fa-4x"></i>
                 <h1>WORK {'experience'.toLocaleUpperCase()}</h1>
             </div>
-            <TweenOne animation={{ type:'from',y:-500,delay:300 }}>
+            <TweenOne animation={{ type:'from',y:500,delay:300 }}>
             <Row>
 				<Col span={24}>
-                <ul class="yh-timeline">
-						<li class="yh-timeline-heading">
+                <ul className="yh-timeline">
+						<li className="yh-timeline-start">
 							<div>start</div>
 						</li>
-						<li class="yh-timeline-unverted">
-							<div class="yh-timeline-badge"><i className="fa fa-flag-checkered"></i></div>
-							<div class="yh-timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Senior Devr</h3>
-									<span class="company">Company Name - 2016 - Current</span>
+						<li className="yh-timeline-unverted">
+							<div className="yh-timeline-badge"></div>
+							<div className="yh-timeline-panel">
+								<div className="yh-timeline-heading">
+									<h3 className="yh-timeline-title">项目助理</h3>
+									<span className="company">厦门雅马哈- 2014-2015</span>
 								</div>
-								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+								<div className="timeline-body">
+									<p>作为项目助理，协助完善项目需求分析与文档归纳与整理</p>
 								</div>
 							</div>
 						</li>
-						<li class="timeline-inverted ">
-							<div class="timeline-badge"><i class="icon-suitcase"></i></div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h3 class="timeline-title">Junior Developer</h3>
-									<span class="company">Company Name - 2013 - 2015</span>
+						<li className="yh-timeline-inverted">
+							<div className="yh-timeline-badge"></div>
+							<div className="yh-timeline-panel">
+								<div className="yh-timeline-heading">
+									<h3 className="yh-timeline-title">web前端开发</h3>
+									<span className="company">Company Name - 2013 - 2015</span>
 								</div>
-								<div class="timeline-body">
-									<p>Far far away, behind the word mountains, they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+								<div className="timeline-body">
+									<p>负责百鱼移动端、百鱼管理后台、百鱼微信公众号的视觉效果定义与前端开发</p>
+								</div>
+							</div>
+						</li>
+                        <li className="yh-timeline-unverted">
+							<div className="yh-timeline-badge"></div>
+							<div className="yh-timeline-panel">
+								<div className="yh-timeline-heading">
+									<h3 className="yh-timeline-title">web前端架构/开发</h3>
+									<span className="company">厦门立林软件 - 2017 - Current</span>
+								</div>
+								<div className="timeline-body">
+									<p>负责项目前端工程的架构设计与前端开发</p>
 								</div>
 							</div>
 						</li>
@@ -153,9 +165,61 @@ fullPageOptions.slides = [
     <Slide className="yh-slider-4"> 
          <div className="yh-aboutme-panel panel-4">
             <div className="yh-panel-title">
-                <i class="fa fa-braille fa-4x"></i>
+                <i className="fa fa-braille fa-4x"></i>
                 <h1>{'progress'.toLocaleUpperCase()}</h1>
             </div>
+            <TweenOne animation={{ type:'from',y:500,delay:300 }}>
+                  <div className="yh-progress-wrapper">
+                  <Row >
+                      <Col span={8}>
+                          <Card>
+                               多多网游加速器官网
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               多微视频网站
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               百鱼官网&&百鱼后台管理系统
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               百鱼APP移动端
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               百鱼微信公众号开发
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               立林科技智慧社区web管理后台
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               立林云对讲项目办事处管理系统PC版
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               立林云对讲项目办事处管理系统移动版
+                          </Card>
+                      </Col>
+                      <Col span={8}>
+                          <Card>
+                               Hyihong个人网站
+                          </Card>
+                      </Col>
+                  </Row>
+                  </div>
+                 
+            </TweenOne>
         </div>  
     </Slide>
 ]

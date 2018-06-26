@@ -60,7 +60,7 @@ if( isDev ){
     koaWebpack({
        compiler:compilerInstance,
        devMiddleware:{
-        logLevel:'info',
+        logLevel:'warn',
        },
        hotClient:{
         hmr:true
