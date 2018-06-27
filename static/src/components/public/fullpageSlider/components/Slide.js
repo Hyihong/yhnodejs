@@ -22,7 +22,6 @@ const Slide = ({ id, render, className, width, height, horizontal, horizontalSli
     'data-horizontal-slider': horizontalSliderName || null
   };
   
-  console.log( children )
   // function analysisRenderContent( c ){
   //      if( c.type && c.type=== 'function' ){
   //         if(c.type.name !=='TweenOne'){

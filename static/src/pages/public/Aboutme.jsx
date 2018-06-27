@@ -218,7 +218,6 @@ fullPageOptions.slides = [
                       </Col>
                   </Row>
                   </div>
-                 
             </TweenOne>
         </div>  
     </Slide>
@@ -235,7 +234,8 @@ class About extends Component{
     render(){
         return(
             <div>
-                <Fullpage {...fullPageOptions} ></Fullpage>   
+                <Fullpage {...fullPageOptions} ></Fullpage> 
+                <div className="yh-modal"></div>  
             </div>
         )
     }
